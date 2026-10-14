@@ -1,0 +1,31 @@
+[profile.default]
+src = "contracts"
+test = "test-foundry"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.37"
+evm_version = "shanghai"
+optimizer = true
+optimizer_runs = 1
+via_ir = true
+# Test harness embeds extensive local fixtures; production contracts are separately size-checked.
+code_size_limit = 105000
+remappings = [
+  "forge-std/=lib/forge-std/src/",
+  "@openzeppelin/=node_modules/@openzeppelin/",
+  "@openzeppelin-contracts-upgradeable/=vendor/openzeppelin-contracts-upgradeable/"
+]
+
+[profile.test]
+# The security review harness embeds local fixtures and exceeds the default
+# test deployment ceiling; keep the larger limit scoped to test execution.
+code_size_limit = 120000
+
+# Deployment-only selection/output; compiler settings inherit the pinned default.
+[profile.production]
+src = "contracts/production/v3/phase7cr2ch"
+out = "out-production"
+cache_path = "cache-production"
+script = "script"
+code_size_limit = 24576
+fs_permissions = [{ access = "read", path = "./deployment" }]
