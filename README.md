@@ -2,43 +2,36 @@
 
 **Built to Compound.**
 
-COMPD is an experimental on-chain strategy and observation project organized as a single public monorepo. It brings together the interface, agent/observation code, and Solidity protocol source.
+COMPD brings its interface, agent systems, and on-chain protocol into one developer-facing monorepo. The project is organized around three connected areas: an interface for understanding protocol state, agent software for evaluating observations and planning actions, and Solidity contracts that define protocol accounting and lifecycle rules.
 
-> **Status: research and development. Not financial advice. Not audited. Not a production deployment.**
-> The included source, tests, ABIs, fixtures, and recorded addresses do not prove that COMPD is deployed, active, secure, profitable, or authorized to trade. Do not send funds or use these contracts with real assets without an independent security review.
+This repository is the public home for the COMPD codebase. It includes the components listed below, their development workflows, tests, and supporting documentation.
 
-## Repository layout
+> **Smart contracts included.** This repository contains Solidity source, ABI exports, and contract tests. Contract source and passing tests are not a substitute for an independent security audit, nor do they prove that a contract is deployed, active, or ready to handle real assets. Verify deployment addresses and runtime code independently before relying on them.
 
-| Path | Purpose |
-|---|---|
-| `apps/interface/` | Web interface, dashboard projections, local development server, and UI tests |
-| `packages/agent/` | Agent observation, planning, and offline fixture/regression code |
-| `packages/protocol/` | Solidity contracts, ABIs, Foundry tests, and protocol documentation |
-| `docs/` | Monorepo architecture and public-safety notes |
+## Project components
 
-The three components remain in separate directories to preserve their project-specific paths and tooling.
+| Path | Component | Purpose |
+|---|---|---|
+| `apps/interface/` | Interface | Web UI, dashboard views, local development server, and frontend tests |
+| `packages/agent/` | Agent | Observation, evaluation, planning, and supporting test/fixture code |
+| `packages/protocol/` | Protocol | Solidity contracts, ABI exports, Foundry tests, and protocol documentation |
+| `docs/` | Project docs | Monorepo architecture and public-repository guidance |
 
-## What is included
+Each component remains in its own directory to preserve its existing paths and tooling while making the overall project easier to explore and develop.
 
-- Web UI and local preview tools.
-- Agent observation/planning source and offline tests.
-- Solidity source, interfaces, ABI exports, and Foundry tests.
-- Public documentation and non-secret example fixtures.
+## What COMPD contains
 
-Private server deployment instructions, service unit files, operator configuration bundles, and selected operational executor helpers from the private source exports were intentionally excluded from this public bundle. This repository is not a server deployment package.
+- A web interface for exploring protocol and agent-related views.
+- Agent observation and planning code, with offline fixtures and regression tests.
+- Solidity contracts covering protocol accounting, strategy lifecycle, settlement, and related modules.
+- ABI exports, contract tests, and technical documentation.
+- Local development commands for working on each component independently.
 
-## Current safety boundaries
-
-- Agent trading is **not represented as live** by this repository.
-- UI dashboards and fixtures are not authoritative financial data.
-- Smart-contract source and tests are not an audit or deployment proof.
-- Historical/prototype contracts are retained for research; do not assume every contract is current or production-ready.
-- Never commit private keys, seed phrases, passwords, API tokens, `.env` files, production RPC credentials, or private runtime state.
-- Treat any address in the source as historical evidence unless independently verified against the target chain.
+Some private operational material—such as server deployment configuration, service unit files, credentials, runtime state, and selected operational helpers—is intentionally not included in this public repository. The repository is intended for project development and review, not as a turnkey production server deployment.
 
 ## Quick start
 
-Requirements: Node.js 20+ and npm. Foundry is needed for Solidity builds/tests. Python 3.12+ is needed for the agent's Python tests.
+Install the tools needed for the component you want to work on. The interface uses Node.js 20+ and npm; the agent tests use Python 3.12+; the protocol uses Foundry and the dependencies declared in its package configuration.
 
 ### Interface
 
@@ -51,39 +44,49 @@ npm run build
 npm run dev
 ```
 
-Open the local URL printed by the development server (normally `http://127.0.0.1:4173`).
+Open the local URL printed by the development server (normally `http://127.0.0.1:4173`). See [`apps/interface/README.md`](apps/interface/README.md) for details.
 
 ### Agent
 
-Run from `packages/agent/`:
-
 ```bash
+cd packages/agent
 python -m unittest discover -s tools/agent-scheduler -p test_dashboard_api.py
 python -m unittest discover -s tools/agent-scheduler -p test_xstocks_agent.py
 ```
 
-Some optional tests and modules require Node.js dependencies as documented in that package.
+Some optional tests and modules require additional dependencies. See [`packages/agent/README.md`](packages/agent/README.md).
 
-### Protocol
-
-Run from `packages/protocol/`:
+### Protocol and smart contracts
 
 ```bash
+cd packages/protocol
 npm install
 npm run build
 npm test
 ```
 
-These commands require Foundry (`forge`) and the package dependencies. A passing local build/test does not establish deployment readiness or security.
+These commands require Foundry (`forge`) and the package dependencies. Review [`packages/protocol/README.md`](packages/protocol/README.md) for contract structure, documented addresses, and execution-related warnings.
 
-## Smart contracts
+## Architecture
 
-Yes, this public repository includes Solidity contracts, ABI files, and tests under `packages/protocol/`. Contracts may control assets if deployed and configured. Review the code and deployment assumptions carefully; do not deploy to mainnet or fund contracts based solely on this repository.
+At a high level, COMPD separates the user-facing interface, agent observation/planning logic, and on-chain protocol rules. The interface can present observed data; the agent code can evaluate available observations and form plans; the protocol contracts define on-chain accounting and lifecycle constraints. These components have different responsibilities and should not be treated as interchangeable sources of truth.
+
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and the component READMEs for implementation details.
+
+## Security and deployment
+
+- Never commit private keys, seed phrases, passwords, API tokens, `.env` files, production RPC credentials, or private runtime state.
+- Treat dashboard values, fixtures, and offline tests according to their documented data source; they are not automatically live or authoritative financial data.
+- Verify contract addresses, deployed bytecode, configuration, and the complete contract graph against the intended chain before integration.
+- Review any script that can broadcast transactions before running it. A build or test command should not be interpreted as deployment approval.
+- Obtain independent security review before connecting real assets or enabling automated execution.
+
+Report suspected vulnerabilities privately according to [`SECURITY.md`](SECURITY.md). These notes describe safe handling expectations; they do not imply that the entire codebase has been audited.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) before opening a pull request.
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md), [`SECURITY.md`](SECURITY.md), and [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) before opening a pull request.
 
 ## License
 
-No license has been declared in this repository yet. Unless and until a license is added by the project owner, all rights are reserved and reuse/redistribution may be restricted.
+No root license is included at this time. Unless the project owner adds a license, rights to reuse, modify, and redistribute COMPD's first-party code are not granted by default. Review component-level third-party notices before redistributing any bundled dependency.
