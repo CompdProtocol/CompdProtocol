@@ -1,0 +1,8 @@
+{
+  "allocationBps": 500,
+  "momentumBps": 100,
+  "takeProfitBps": 600,
+  "maxPriceAgeSeconds": 60,
+  "deadlineSeconds": 60,
+  "slippageBps": 50
+}

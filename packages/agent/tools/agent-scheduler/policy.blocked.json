@@ -1,0 +1,9 @@
+{
+  "approvalReference": "UNAPPROVED",
+  "adapter": "UNRESOLVED",
+  "adapterCodeHash": "UNRESOLVED",
+  "entryRule": "UNDEFINED",
+  "allocationBps": 0,
+  "holdSeconds": 0,
+  "settlementRule": "UNDEFINED"
+}

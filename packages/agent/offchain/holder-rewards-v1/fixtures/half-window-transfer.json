@@ -1,0 +1,78 @@
+{
+  "mode": "TEST_ONLY",
+  "chainId": "56",
+  "config": {
+    "compdToken": "0x0000000000000000000000000000000000000011",
+    "vault": "0x0000000000000000000000000000000000000022",
+    "distributor": "0x0000000000000000000000000000000000000033"
+  },
+  "activation": {
+    "blockNumber": "1",
+    "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "timestamp": "2879999"
+  },
+  "replay": {
+    "startBlock": "1",
+    "endBlock": "3",
+    "initialState": {
+      "blockNumber": "0",
+      "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "totalSupply": "1000000000000000000000000",
+      "balances": [
+        { "address": "0x00000000000000000000000000000000000000a1", "balance": "1000000000000000000000000" }
+      ]
+    },
+    "blockHeaders": [
+      { "number": "1", "hash": "0x0000000000000000000000000000000000000000000000000000000000000001", "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000", "timestamp": "2879999" },
+      { "number": "2", "hash": "0x0000000000000000000000000000000000000000000000000000000000000002", "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000001", "timestamp": "2894400" },
+      { "number": "3", "hash": "0x0000000000000000000000000000000000000000000000000000000000000003", "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000002", "timestamp": "2908800" }
+    ],
+    "transferEvents": [
+      {
+        "blockNumber": "2",
+        "transactionIndex": "0",
+        "logIndex": "0",
+        "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "transactionHash": "0x00000000000000000000000000000000000000000000000000000000000000a2",
+        "token": "0x0000000000000000000000000000000000000011",
+        "from": "0x00000000000000000000000000000000000000a1",
+        "to": "0x00000000000000000000000000000000000000b2",
+        "value": "1000000000000000000000000"
+      }
+    ]
+  },
+  "checkpoint": {
+    "blockNumber": "3",
+    "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000003",
+    "totalSupply": "1000000000000000000000000",
+    "balances": [
+      { "address": "0x00000000000000000000000000000000000000b2", "balance": "1000000000000000000000000" }
+    ]
+  },
+  "window": { "commitmentVersion": "1", "start": "2880000", "end": "2908800" },
+  "exclusionRegistry": {
+    "version": "1",
+    "addresses": ["0x000000000000000000000000000000000000dEaD"]
+  },
+  "rewardAsset": "0x0000000000000000000000000000000000000099",
+  "profitAttributions": [
+    {
+      "sourceKind": "RealizedProfitRouted",
+      "blockNumber": "2",
+      "blockHash": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "transactionHash": "0x00000000000000000000000000000000000000000000000000000000000000a2",
+      "logIndex": "1",
+      "positiveRealizedProfit": "1000",
+      "holderReward": "100"
+    }
+  ],
+  "algorithmVersion": "1",
+  "eventSource": {
+    "kind": "archived-canonical-fixture",
+    "bundleSha256": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "finalityPolicy": {
+    "status": "TEST_ONLY",
+    "label": "SIMULATED FINALITY — TEST ONLY; NOT A BNB CHAIN PRODUCTION POLICY"
+  }
+}

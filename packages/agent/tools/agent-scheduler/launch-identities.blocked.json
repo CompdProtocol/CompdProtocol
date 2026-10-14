@@ -1,0 +1,14 @@
+{
+  "token": "0x7b7Af51136574c91A12988989c0a08E98aE97777",
+  "tokenCodeHash": "UNRESOLVED",
+  "vaultPortal": "0x90497450f2a706f1951b5bdda52B4E5d16f34C06",
+  "vaultPortalCodeHash": "UNRESOLVED",
+  "portal": "0xe2cE6ab80874Fa9Fa2aAE65D277Dd6B8e65C9De0",
+  "portalCodeHash": "UNRESOLVED",
+  "factory": "UNRESOLVED",
+  "factoryCodeHash": "UNRESOLVED",
+  "receiver": "UNRESOLVED",
+  "receiverCodeHash": "UNRESOLVED",
+  "buybackExecutor": "UNRESOLVED",
+  "buybackExecutorCodeHash": "UNRESOLVED"
+}

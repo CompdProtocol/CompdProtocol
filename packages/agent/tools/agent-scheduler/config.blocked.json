@@ -1,0 +1,21 @@
+{
+  "chainId": 56,
+  "agent": "0xB878884A07Fc84e6A1336e15CA8C6580cD7164c3",
+  "kernel": "UNRESOLVED",
+  "settlement": "UNRESOLVED",
+  "executor": "UNRESOLVED",
+  "kernelCodeHash": "UNRESOLVED",
+  "settlementCodeHash": "UNRESOLVED",
+  "executorCodeHash": "UNRESOLVED",
+  "anchorBlock": 0,
+  "anchorHash": "UNRESOLVED",
+  "approvedAdapters": [],
+  "maxGas": 0,
+  "maxGasPriceWei": 0,
+  "dailyGasBudgetWei": 0,
+  "maxPrincipalWei": 0,
+  "dailyPrincipalBudgetWei": 0,
+  "confirmations": 0,
+  "maxAttempts": 3,
+  "retrySeconds": 30
+}

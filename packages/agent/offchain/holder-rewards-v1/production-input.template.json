@@ -1,0 +1,51 @@
+{
+  "mode": "PRODUCTION",
+  "chainId": "56",
+  "config": {
+    "compdToken": "TBD_DEPLOYMENT_ADDRESS",
+    "vault": "TBD_DEPLOYMENT_ADDRESS",
+    "distributor": "TBD_DEPLOYMENT_ADDRESS"
+  },
+  "activation": {
+    "blockNumber": "TBD_DEPLOYMENT_CHECKPOINT",
+    "blockHash": "TBD_INDEPENDENTLY_VERIFIED_HASH",
+    "timestamp": "TBD_INDEPENDENTLY_VERIFIED_TIMESTAMP"
+  },
+  "replay": {
+    "startBlock": "TBD_COMPLETE_HISTORY_START",
+    "endBlock": "TBD_REVIEWED_FINALITY_BLOCK",
+    "initialState": "TBD_RECONCILED_PRE_ACTIVATION_BALANCE_SNAPSHOT",
+    "blockHeaders": "TBD_COMPLETE_CANONICAL_HEADERS",
+    "transferEvents": "TBD_COMPLETE_CANONICAL_TRANSFER_LOGS"
+  },
+  "checkpoint": {
+    "blockNumber": "TBD_REVIEWED_FINALITY_BLOCK",
+    "blockHash": "TBD_INDEPENDENTLY_VERIFIED_HASH",
+    "totalSupply": "TBD_RECONCILED_TOTAL_SUPPLY",
+    "balances": "TBD_RECONCILED_BALANCE_MAP"
+  },
+  "window": {
+    "commitmentVersion": "TBD_APPROVED_VERSION",
+    "start": "TBD_UTC_ALIGNED_WINDOW_START",
+    "end": "TBD_UTC_ALIGNED_WINDOW_END"
+  },
+  "exclusionRegistry": {
+    "version": "TBD_FROZEN_REGISTRY_VERSION",
+    "addresses": "TBD_INDEPENDENTLY_VERIFIED_PROTOCOL_MODULES"
+  },
+  "rewardAsset": "TBD_DEPLOYMENT_VERIFIED_QUOTE_ASSET",
+  "profitAttributions": "TBD_RECONCILED_POSITIVE_REALIZED_PROFIT_EVENTS_ONLY",
+  "algorithmVersion": "1",
+  "eventSource": {
+    "kind": "TBD_REVIEWED_SOURCE_ADAPTER",
+    "bundleSha256": "TBD_SHA256_OF_EXACT_NORMALIZED_INPUT_BUNDLE"
+  },
+  "finalityPolicy": {
+    "status": "TBD",
+    "label": "TBD_EXTERNAL_BNB_CHAIN_FINALITY_POLICY"
+  },
+  "productionVerification": {
+    "status": "TBD",
+    "references": []
+  }
+}

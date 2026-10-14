@@ -1,0 +1,11 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {buildIndexedProposal} from '../src/indexed-candidate.mjs';import {verifyPhase3Proof} from '../src/core.mjs';
+const H='0x'+'1'.repeat(64),A='0x'+'1'.repeat(40),B='0x'+'2'.repeat(40);
+function fixture(start=1000,end=1900){return {mode:'DRY_RUN_INDEXED_PROPOSAL',protocol:{chainId:56,token:'0x7b7af51136574c91a12988989c0a08e98ae97777',kernel:A,distributor:B,creationBlock:10,creationBlockHash:H,launchTimestamp:1000,exclusionSetVersion:2,exclusionSetHash:H},reward:{start,end,poolWei:'101',top30:[{address:A,weight:'900',amountWei:'51'},{address:B,weight:'900',amountWei:'50'}]},evidence:{snapshotBlock:10,snapshotBlockHash:H,closeBlock:11,closeBlockHash:H,finalityBlock:23,finalityBlockHash:H,replayCodeHash:H}};}
+test('900-second launch proposal exact conservation and canonical Merkle proofs',()=>{let p=buildIndexedProposal(fixture());assert.equal(p.candidate.windowEnd,'1900');assert.equal(p.candidate.payableTotal,'101');assert.equal(p.leaves.length,2);assert.ok(p.leaves.every((l,i)=>verifyPhase3Proof(l,p.proofs[i],p.candidate.root,2)));assert.match(p.status,/DRY_RUN/);});
+test('bridge proposal ends at next UTC boundary',()=>assert.equal(buildIndexedProposal(fixture(1900,28800)).candidate.windowEnd,'28800'));
+test('regular UTC eight-hour proposal',()=>assert.equal(buildIndexedProposal(fixture(28800,57600)).candidate.windowEnd,'57600'));
+test('zero-wei recipients remain ranks but never unpayable leaves',()=>{let f=fixture();f.reward.poolWei='1';f.reward.top30[0].amountWei='1';f.reward.top30[1].amountWei='0';let p=buildIndexedProposal(f);assert.equal(p.leaves.length,1);assert.equal(p.candidate.payableTotal,'1');});
+test('tampered allocation rejected',()=>{let f=fixture();f.reward.top30[0].amountWei='52';assert.throws(()=>buildIndexedProposal(f));});
+test('unapproved execution mode, chain and overlapping epoch rejected',()=>{let f=fixture();f.mode='PRODUCTION';assert.throws(()=>buildIndexedProposal(f));f=fixture();f.protocol.chainId=97;assert.throws(()=>buildIndexedProposal(f));assert.throws(()=>buildIndexedProposal(fixture(1001,1901)));});
+test('zero-profit has no fabricated candidate or payable leaf',()=>{let f=fixture();f.reward.poolWei='0';assert.throws(()=>buildIndexedProposal(f),/Zero windows/);});
