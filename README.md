@@ -1,232 +1,278 @@
 # COMPD — The Compounder
 
-<img width="2243" height="701" alt="image" src="https://github.com/user-attachments/assets/530cade9-6083-49ac-ae29-26eceb0ddf88" />
+<img width="2243" height="701" alt="image" src="https://github.com/user-attachments/assets/17408c29-babe-461d-bff4-a45870577d0b" />
 
 **Built to Compound.**
 
-COMPD is a modular treasury and strategy execution framework developed for BNB Chain. It brings protocol accounting, controlled execution, strategy evaluation, buyback mechanisms, and holder reward infrastructure into a connected development architecture.
+COMPD is a treasury-driven protocol on BNB Chain, connecting token activity, on-chain capital allocation, autonomous strategy infrastructure, buyback mechanisms, and holder rewards within a unified financial architecture.
 
-The project is designed around a fundamental separation of responsibilities: treasury accounting defines how capital is recorded and allocated, execution components handle authorized strategy operations, and settlement mechanisms reconcile strategy outcomes with protocol accounting.
+The protocol is designed to convert eligible treasury inflows into structured capital operations, with execution, settlement, and allocation governed by dedicated on-chain components.
 
-COMPD combines Solidity smart contracts, an observation and planning layer, and a web interface to support development, testing, and protocol transparency.
+COMPD brings together three primary systems:
 
-> **Development status:** COMPD remains under active development. The presence of source code, tests, and deployment artifacts does not establish production readiness. Agent trading is not currently live.
+- **On-Chain Protocol** — treasury accounting, strategy execution boundaries, settlement, buyback, and holder reward infrastructure.
+- **Strategy Agent** — market observation, risk evaluation, and strategy planning for supported assets.
+- **Protocol Interface** — visibility into treasury activity, transaction evidence, strategy operations, and protocol accounting.
 
----
+The initial trading integration is focused on **AMZNx**, a tokenized equity asset, through supported PancakeSwap liquidity on BNB Chain.
 
 ## 01. Protocol Overview
 
-COMPD explores a modular approach to treasury management in which strategy execution and protocol accounting operate through defined boundaries.
+COMPD is built around a simple principle: capital entering the protocol should be accounted for, allocated according to defined rules, and reconciled against verifiable on-chain activity.
 
-Rather than treating a trading strategy as the entire protocol, COMPD separates several responsibilities:
+The protocol separates financial responsibilities into distinct components rather than relying on a single unrestricted treasury wallet.
 
-- **Treasury Accounting** — tracks protocol capital, reserves, and accounting states.
-- **Strategy Execution** — provides a controlled pathway for strategy-related operations.
-- **Settlement** — reconciles completed strategy outcomes with protocol accounting.
-- **Buyback Infrastructure** — supports protocol-defined buyback operations.
-- **Holder Rewards** — provides dedicated reward accounting and distribution components.
-- **Observation & Planning** — evaluates available data and prepares potential strategy actions.
-- **Protocol Interface** — presents protocol information and available monitoring data.
+Its architecture covers treasury accounting, strategy execution, realized-profit settlement, buyback operations, and holder reward distribution.
 
-These components form the foundation for an extensible treasury framework. Their existence in source does not imply that every integration is operational or independently validated.
+### Protocol operating model
 
-## 02. System Architecture
+COMPD is designed to operate through a connected financial lifecycle:
 
-COMPD is organized into three principal software layers: the interface, the agent system, and the on-chain protocol.
+1. **Token activity** — trading activity and applicable token fee mechanisms generate eligible protocol inflows.
+2. **Treasury funding** — eligible assets are received and accounted for through the protocol's treasury infrastructure.
+3. **Capital allocation** — available capital is separated according to applicable reserve and strategy rules.
+4. **Strategy execution** — authorized execution infrastructure interacts with supported liquidity.
+5. **Settlement** — completed strategy outcomes are reconciled against actual asset movements.
+6. **Protocol allocation** — eligible realized results are processed through the applicable buyback, reserve, and holder reward mechanisms.
 
-| Layer | Responsibility | Technology |
-|---|---|---|
-| Interface | Protocol presentation, monitoring, and dashboard functionality | Web frontend |
-| Agent | Observation, evaluation, and strategy planning | Python-based tooling |
-| Protocol | Treasury accounting, execution controls, settlement, and rewards | Solidity / BNB Chain |
+The lifecycle depends on the relevant contracts, liquidity, funding, execution permissions, and operational conditions.
 
-### Architecture overview
+## 02. Launch Activation
+
+COMPD's operational lifecycle is intended to begin following the official token launch and completion of the necessary on-chain prerequisites.
+
+### Activation requirements
+
+| Requirement | Purpose |
+|---|---|
+| Official token launch | Establishes the protocol's token ecosystem |
+| Token liquidity | Supports on-chain token trading |
+| On-chain transaction activity | Generates activity relevant to applicable fee mechanisms |
+| Fee collection | Provides eligible inflows under the token's actual fee configuration |
+| Treasury / vault funding | Establishes available protocol capital |
+| Contract configuration | Connects authorized protocol components |
+| Strategy validation | Confirms execution and settlement conditions for the supported trading integration |
+
+Token launch and liquidity alone do not automatically guarantee strategy execution. The required contracts, integrations, capital availability, and risk controls must also satisfy their operating conditions.
+
+### Capital activation
+
+Treasury capital is not assumed to exist simply because the token has launched.
+
+The applicable fee and funding mechanisms must actually deliver assets to the designated treasury or vault infrastructure before those assets can be considered available for allocation.
+
+COMPD's accounting architecture distinguishes available capital, reserved capital, and realized strategy outcomes.
+
+## 03. System Architecture
+
+COMPD separates user-facing observation, off-chain strategy decisions, and on-chain financial operations.
 
 ```mermaid
-flowchart TB
-    UI["COMPD Interface"]
-    AG["Agent Observation & Planning"]
-    EX["Strategy Execution Boundary"]
-    K["Protocol Kernel"]
-    ST["Settlement Components"]
-    BB["Buyback Components"]
-    HR["Holder Reward Components"]
+flowchart TD
+    A["Official Token Launch"]
+    B["Token Liquidity & Trading Activity"]
+    C["Eligible Protocol Fee Inflows"]
+    D["Treasury / Vault"]
+    E["Kernel — Accounting & Reserves"]
+    F["Strategy Agent — AMZNx"]
+    G["StrategyExecutor"]
+    H["PancakeSwap — BNB Chain"]
+    I["Settlement"]
+    J["Buyback Infrastructure"]
+    K["Holder Rewards"]
+    L["COMPD Interface"]
 
-    UI -.->|"Observation"| K
-    AG -.->|"Proposed actions"| EX
-    EX -.->|"Authorized execution / accounting integration"| K
-    K --- ST
-    K --- BB
-    K --- HR
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    F -.->|"Proposed strategy actions"| G
+    E -.->|"Authorized capital lifecycle"| G
+    G --> H
+    H -.->|"Execution outcomes"| I
+    I --> E
+    E -.->|"Eligible allocations"| J
+    E -.->|"Eligible allocations"| K
+    E -.->|"Observation"| L
 ```
 
-The diagram illustrates the architectural responsibilities of the system. It is not a claim that every connection represents a currently active production integration.
+This diagram represents the intended protocol lifecycle. Actual asset movements and allocation paths are determined by deployed contracts and verified execution behavior.
 
-### Separation of responsibilities
+## 04. Smart Contract Architecture
 
-The interface is not an authoritative source of on-chain financial state. Agent observations and proposed actions do not automatically become executable transactions. The protocol's accounting rules and authorization boundaries remain distinct from off-chain evaluation.
+COMPD's on-chain architecture is organized around accounting integrity, controlled execution, and separation of financial responsibilities.
 
-This separation is important for preserving clarity between observed information, proposed execution, actual asset movement, and recorded financial outcomes.
-
-## 03. Smart Contract Architecture
-
-COMPD's protocol layer contains Solidity components addressing treasury management, strategy execution, settlement, and protocol-level financial operations.
-
-### Core modules
-
-| Module | Primary responsibility |
+| Component | Responsibility |
 |---|---|
-| Kernel | Coordinates protocol accounting, reserve separation, and lifecycle controls |
-| StrategyExecutor | Provides the strategy execution boundary and integration path |
-| Settlement | Accounts for completed strategy outcomes and realized financial results |
-| Treasury Components | Manage protocol-defined capital accounting and allocation responsibilities |
-| Buyback Components | Support buyback operations under applicable protocol rules |
-| Holder Reward Components | Support reward accounting and distribution workflows |
-| Interfaces & Adapters | Define integration boundaries between contracts and external systems |
+| Kernel | Treasury accounting, reserve separation, and protocol lifecycle coordination |
+| StrategyExecutor | Authorized strategy execution boundary |
+| Strategy Adapters | Integration with supported execution venues |
+| Settlement Components | Reconciliation of completed strategy outcomes and realized results |
+| Treasury / Vault Components | Receipt, custody, and accounting of eligible protocol capital |
+| Buyback Components | Execution and accounting for applicable buyback operations |
+| Holder Reward Components | Reward accounting, eligibility, and distribution workflows |
+| Protocol Interfaces | Contract-level integration and permission boundaries |
 
 ### Kernel
 
-The Kernel is a central component of COMPD's protocol accounting architecture.
+The Kernel coordinates the accounting responsibilities of the protocol.
 
-Its responsibilities include maintaining the separation between treasury accounting and strategy-related activity, coordinating relevant lifecycle transitions, and providing accounting boundaries for connected protocol components.
+Its role is to maintain the distinction between treasury capital, strategy-related accounting, and other protocol allocations.
 
-The Kernel should not be interpreted as an unrestricted trading wallet or a guarantee of automated financial returns.
+The Kernel's financial state must be interpreted according to actual contract transitions and asset movements.
 
 ### StrategyExecutor
 
-StrategyExecutor provides a dedicated boundary for strategy-related execution.
+StrategyExecutor defines the on-chain execution boundary for authorized strategy operations.
 
-Its architectural purpose is to keep execution responsibilities distinct from higher-level treasury accounting and off-chain strategy evaluation.
+It is separate from the Agent's observation and planning processes.
 
-A proposed strategy action is not equivalent to an executed trade. Authorization, adapter compatibility, execution conditions, and actual transaction outcomes must be verified independently.
+An Agent decision does not independently establish execution authority. Transactions remain subject to the relevant execution permissions and contract-level requirements.
 
 ### Settlement
 
-Settlement components address the reconciliation of strategy activity with protocol accounting.
+COMPD distinguishes realized strategy outcomes from unrealized changes in market value.
 
-An important distinction is maintained between:
+Settlement is intended to reconcile completed strategy activity with actual capital movements before applicable profit-related allocations are recognized.
 
-- An estimated or observed strategy result.
-- An executed transaction.
-- Assets physically returned or transferred.
-- A realized outcome recognized by protocol accounting.
+This separation is fundamental to the protocol's accounting model.
 
-This distinction is essential for preventing hypothetical or unrealized performance from being presented as settled protocol profit.
+## 05. Treasury & Capital Flow
 
-## 04. Treasury & Capital Management
+COMPD's treasury infrastructure is designed to receive eligible protocol inflows and account for them through defined capital categories.
 
-COMPD separates capital accounting from the execution of individual strategies.
+### Treasury responsibilities
 
-The treasury architecture is intended to support explicit financial responsibilities, rather than treating all available capital as unrestricted strategy liquidity.
+- Record eligible capital entering the protocol.
+- Maintain relevant reserve and allocation boundaries.
+- Track capital committed to authorized strategy activity.
+- Reconcile returned capital and realized outcomes.
+- Support downstream protocol operations under their applicable rules.
 
 ### Capital lifecycle
 
-A high-level strategy lifecycle can be described as:
+```mermaid
+flowchart LR
+    A["Eligible Fee / Funding Inflows"]
+    B["Treasury Accounting"]
+    C["Available Capital"]
+    D["Authorized Strategy"]
+    E["Realized Settlement"]
+    F["Protocol Allocations"]
 
-1. Capital is accounted for within the relevant treasury and reserve framework.
-2. A strategy operation is evaluated against its applicable authorization and execution requirements.
-3. An approved execution path may interact with external liquidity or strategy infrastructure.
-4. Completed execution results and physical asset movements are evaluated for settlement.
-5. Recognized outcomes are processed through the applicable protocol accounting rules.
-6. Subsequent treasury, buyback, or holder-reward operations remain subject to their respective mechanisms.
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+```
 
-This describes the conceptual lifecycle, not a guarantee that all stages are enabled or operational in the current development environment.
+Accounting entries are not equivalent to physical token transfers. All capital movement and settlement must be evaluated against actual contract behavior and transaction evidence.
 
-### Accounting versus asset movement
+## 06. Initial Trading Strategy — AMZNx
 
-COMPD distinguishes internal accounting updates from actual blockchain asset transfers.
+COMPD's initial Agent trading scope is focused on **AMZNx**, using compatible PancakeSwap liquidity on BNB Chain.
 
-An accounting entry alone does not establish that assets have moved, a trade has succeeded, or profit has been realized.
+The initial scope is intentionally narrow, allowing the execution and risk framework to be evaluated against a specific supported asset before considering additional integrations.
 
-Financial state should be verified against relevant contract behavior, transaction evidence, and the intended deployment environment.
+### Initial execution scope
 
-## 05. Strategy Execution & Settlement
+| Parameter | Initial scope |
+|---|---|
+| Trading asset | AMZNx |
+| Network | BNB Chain |
+| Execution venue | PancakeSwap |
+| Integration approach | V3-compatible strategy adapter |
+| Capital and routing asset | BNB / WBNB where required |
+| Strategy lifecycle | Observation → Risk Evaluation → Execution → Settlement |
+| Expansion | Additional assets require separate integration and validation |
 
-COMPD separates strategy planning from execution and settlement.
+BNB and WBNB serve capital and execution-routing responsibilities; they do not redefine the initial strategy as unrestricted cryptocurrency trading.
 
-**Observation:** Off-chain systems evaluate available information and market conditions.
+### Strategy workflow
 
-**Planning:** Strategy logic may construct proposed actions using its configured rules.
+**1. Market observation**
 
-**Execution:** Any transaction-capable pathway must satisfy the applicable authorization, adapter, and operational requirements.
+The Agent evaluates available market information relevant to AMZNx, including supported on-chain liquidity and independent reference data.
 
-**Settlement:** Completed outcomes are reconciled with the protocol's financial accounting model.
+**2. Risk evaluation**
 
-### Realized profit
+Proposed actions are assessed against applicable execution conditions, market-data freshness, liquidity constraints, and operational safeguards.
 
-COMPD's accounting design distinguishes realized strategy outcomes from estimated portfolio changes or unrealized market movements.
+**3. Strategy planning**
 
-Profit-related protocol operations must rely on the settlement rules implemented by the relevant contracts.
+The Agent constructs a potential execution decision based on the supported strategy configuration.
 
-The availability of settlement code does not establish that live strategies are generating profit.
+**4. Authorized execution**
 
-### Execution status
+Eligible actions may be submitted through the configured execution boundary and compatible adapter.
 
-Agent trading is currently **not live**.
+**5. Settlement**
 
-Strategy adapters, risk controls, data freshness, external market dependencies, and end-to-end settlement behavior require appropriate validation before production execution can be considered.
+Completed execution results are reconciled through the protocol's settlement and accounting components.
 
-## 06. Buyback & Holder Rewards
+### Market-data considerations
 
-COMPD includes separate protocol components for buyback-related activity and holder reward accounting.
+Tokenized equity trading introduces dependencies beyond ordinary cryptocurrency swaps.
 
-### Buyback infrastructure
+Execution safeguards must account for reliable independent reference pricing, stale data, market availability, and relevant trading restrictions.
 
-Buyback components provide a dedicated mechanism for protocol-defined buyback operations.
+A functioning DEX pool alone does not establish that the underlying asset can be traded safely under all market conditions.
 
-Actual buyback eligibility, funding, execution, and accounting depend on the implementation and applicable operational configuration.
+## 07. Buyback Infrastructure
 
-The presence of a buyback contract does not imply that automatic buybacks are currently active.
+COMPD includes dedicated infrastructure for protocol-defined buyback operations.
 
-### Holder reward infrastructure
+Buyback activity is separate from strategy planning and treasury accounting, with its own applicable funding, authorization, and execution requirements.
 
-Holder reward components address the accounting and distribution of protocol-defined rewards.
+The availability of treasury capital or positive strategy performance does not independently guarantee that a buyback will occur.
 
-Their purpose is to separate holder-related distribution responsibilities from strategy execution and treasury bookkeeping.
+Actual buyback execution depends on the governing contract rules, available funds, and operational configuration.
 
-Reward availability, eligibility, calculation, and claiming depend on the relevant implementation and deployed configuration.
+## 08. Holder Rewards
 
-**No fixed yield, guaranteed return, or active distribution schedule is implied by this repository.**
+COMPD includes holder reward infrastructure intended to account for and distribute eligible protocol allocations.
 
-## 07. Interface & Agent Systems
+Reward-related operations are separated from strategy execution to maintain clear financial responsibilities.
 
-### Interface
+### Reward lifecycle
 
-Location: `apps/interface/`
+1. An eligible allocation is recognized under the applicable protocol rules.
+2. The corresponding reward accounting or distribution mechanism processes that allocation.
+3. Holder eligibility is determined using the implemented rules and relevant data.
+4. Rewards become distributable or claimable according to the configured mechanism.
 
-The COMPD interface provides a frontend for exploring protocol-related information and supported observation features.
+Holder rewards depend on actual protocol activity and applicable allocations. They do not represent a fixed yield or guaranteed return.
 
-Its development scope includes:
+## 09. Interface & Agent Systems
 
-- Protocol presentation and dashboard views.
-- Observation and transaction-evidence interfaces.
-- Frontend integration and testing.
-- Local development workflows.
+### Protocol Interface
 
-Displayed information must be interpreted according to its actual source. Simulated, cached, fixture-based, and live blockchain data are not interchangeable.
+`apps/interface/`
 
-### Agent
+The COMPD interface provides a user-facing layer for exploring protocol information, treasury-related observations, and available transaction evidence.
 
-Location: `packages/agent/`
+Its responsibilities include protocol presentation, dashboard views, monitoring integrations, and local development tooling.
 
-The agent component contains software for observation, evaluation, planning, and supporting tests.
+### Strategy Agent
 
-Agent-generated outputs should be treated as proposed decisions or analytical results unless execution is independently verified.
+`packages/agent/`
 
-The presence of agent software does not establish autonomous production trading, validated strategy performance, or unrestricted transaction authority.
+The Agent system supports observation, risk evaluation, and strategy planning for the supported trading scope.
 
-## 08. Repository Structure
+Its responsibilities remain distinct from the authority of on-chain execution contracts.
+
+A proposed action, simulated result, or dashboard observation should not be interpreted as a completed blockchain transaction without corresponding execution evidence.
+
+## 10. Repository Structure
 
 ```text
 COMPD/
 ├── apps/
 │   └── interface/
-│       └── README.md
 ├── packages/
 │   ├── agent/
-│   │   └── README.md
 │   └── protocol/
-│       └── README.md
 ├── docs/
 │   └── ARCHITECTURE.md
 ├── README.md
@@ -234,23 +280,21 @@ COMPD/
 └── CONTRIBUTING.md
 ```
 
-Each component maintains its own development tooling and documentation.
+The repository organizes interface, Agent, protocol, and supporting documentation into separate component directories.
 
-Additional files and directories are described in the relevant component README.
+Private operational credentials, deployment secrets, and runtime infrastructure are not part of the public documentation.
 
-## 09. Getting Started
-
-COMPD supports component-level development workflows.
+## 11. Getting Started
 
 ### Prerequisites
 
-| Component | Requirements |
+| Component | Tooling |
 |---|---|
 | Interface | Node.js 20+, npm |
 | Agent | Python 3.12+ |
-| Protocol | Foundry, Node.js/npm and declared project dependencies |
+| Protocol | Foundry and declared project dependencies |
 
-### Interface development
+### Interface
 
 ```bash
 cd apps/interface
@@ -261,11 +305,7 @@ npm run build
 npm run dev
 ```
 
-The development server prints the local address where the interface can be accessed.
-
-See [Interface Documentation](apps/interface/README.md).
-
-### Agent testing
+### Agent tests
 
 ```bash
 cd packages/agent
@@ -273,11 +313,7 @@ python -m unittest discover -s tools/agent-scheduler -p test_dashboard_api.py
 python -m unittest discover -s tools/agent-scheduler -p test_xstocks_agent.py
 ```
 
-Some tests or integrations may require additional dependencies or local configuration.
-
-See [Agent Documentation](packages/agent/README.md).
-
-### Protocol development
+### Protocol
 
 ```bash
 cd packages/protocol
@@ -286,103 +322,73 @@ npm run build
 npm test
 ```
 
-These commands require the project dependencies and Foundry tooling.
+These commands cover local development and testing. Deployment and transaction execution require separate configuration and authorization.
 
-See [Protocol Documentation](packages/protocol/README.md).
+## 12. Network & Verification
 
-Do not run transaction-broadcasting or deployment scripts without separately reviewing their configuration, permissions, and effects.
+**Primary network:** BNB Smart Chain  
+**Chain ID:** 56  
+**Initial strategy asset:** AMZNx  
+**Initial execution venue:** PancakeSwap
 
-## 10. Testing & Verification
+Before relying on any contract integration, verify the deployed address, runtime bytecode, connected contracts, permissions, and relevant transaction evidence.
 
-COMPD includes development and testing infrastructure across its component repositories.
+Contract source, ABI exports, and local tests should be interpreted separately from verified production deployment information.
 
-Testing serves different purposes depending on the layer:
+## 13. Security Architecture
 
-| Area | Verification objective |
+COMPD's security model emphasizes separation between financial accounting, strategy evaluation, and transaction execution.
+
+Key considerations include:
+
+- **Execution authorization:** Strategy operations must respect applicable contract permissions.
+- **Treasury integrity:** Accounting balances and reserves must remain distinguishable from physical asset transfers.
+- **Settlement integrity:** Realized outcomes must be reconciled against completed activity.
+- **External integrations:** Execution adapters and liquidity venues introduce additional technical dependencies.
+- **Market-data reliability:** AMZNx execution requires appropriate reference-data freshness and market safeguards.
+- **Operational security:** Signing credentials, privileged configuration, and infrastructure access require controlled handling.
+
+The existence of these architectural boundaries does not replace independent security assessment or integration validation.
+
+See [SECURITY.md](SECURITY.md) for responsible disclosure and repository security guidance.
+
+## 14. Protocol Activation & Operations
+
+COMPD's intended operational activation follows the official token launch and the establishment of the necessary treasury, liquidity, and execution conditions.
+
+The primary operating dependencies include:
+
+| Operational dependency | Requirement |
 |---|---|
-| Smart Contracts | Contract behavior, accounting rules, and relevant execution boundaries |
-| Interface | Frontend behavior, integration assumptions, and build correctness |
-| Agent | Observation, planning, fixtures, and regression behavior |
-| Integration | Compatibility and consistency across connected components |
-| Deployment | Address, runtime bytecode, permissions, and configuration verification |
+| Token ecosystem | Official launch and applicable token trading activity |
+| Treasury funding | Actual eligible fee or capital inflows |
+| Vault balances | Available assets under the relevant accounting rules |
+| Strategy integration | Compatible AMZNx execution pathway |
+| Market safeguards | Reliable pricing, liquidity, and execution conditions |
+| Settlement | Verified accounting of completed outcomes |
+| Buyback and rewards | Eligible allocations and configured distribution mechanisms |
 
-A successful build or unit test does not prove the complete system is secure or production-ready.
+Activation of individual components depends on their own prerequisites. These conditions describe the planned operating model rather than a guarantee that every component activates automatically at launch.
 
-Deployment qualification and integration validation are separate from source-level correctness.
+## 15. Contributing
 
-## 11. Network & Deployment
+Technical contributions should follow the repository's contribution and security guidelines.
 
-COMPD's protocol development targets **BNB Smart Chain (chain ID 56)**.
-
-Contract addresses, deployment artifacts, and ABI files must be evaluated against the intended network and deployment context.
-
-Before relying on any deployed component, verify:
-
-- The target chain and contract address.
-- Deployed runtime bytecode and relevant proxy configuration.
-- Privileged roles and administrative permissions.
-- Dependencies and connected contract addresses.
-- Treasury and strategy configuration.
-- Relevant transaction and deployment evidence.
-
-A documented address or generated ABI is not sufficient evidence that a complete protocol deployment is operational.
-
-## 12. Security Considerations
-
-COMPD includes financial accounting and execution-related components. Such systems require careful review of authorization, asset custody, external dependencies, and state transitions.
-
-Relevant security considerations include:
-
-- **Access Control:** Privileged functions and execution permissions.
-- **Treasury Integrity:** Separation of accounting state, reserves, and physical asset movements.
-- **Execution Risk:** External integrations, transaction outcomes, and adapter behavior.
-- **Settlement Integrity:** Reconciliation of realized outcomes with accounting state.
-- **Data Reliability:** Freshness and independence of information used by strategy systems.
-- **Operational Security:** Signing credentials, deployment configuration, and infrastructure permissions.
-
-Public source availability and automated tests do not constitute an independent security audit.
-
-COMPD is not represented as independently audited or production-qualified.
-
-Review [Security Policy](SECURITY.md) before interacting with contract deployment or execution tooling.
-
-## 13. Development Status
-
-COMPD remains under active development.
-
-| Area | Status |
-|---|---|
-| Protocol source | Available in the development codebase |
-| Smart contract tests | Included in the development tooling |
-| Interface | Development implementation available |
-| Agent observation and planning | Development implementation available |
-| Live Agent trading | Not enabled |
-| Independent security audit | Not claimed |
-| End-to-end production qualification | Not established |
-
-Implementation, testing, deployment, and production readiness are separate milestones.
-
-No financial performance, guaranteed compounding outcome, or operational profitability is represented by this documentation.
-
-## 14. Contributing
-
-Contributions should follow the repository's development and security guidelines.
-
-Before submitting changes, review:
+Relevant documentation:
 
 - [Contributing Guidelines](CONTRIBUTING.md)
 - [Security Policy](SECURITY.md)
 - [Architecture Documentation](docs/ARCHITECTURE.md)
 
-Changes affecting financial accounting, execution permissions, or settlement behavior should include appropriate testing and technical justification.
+Changes affecting accounting, execution permissions, settlement, or financial allocations should include relevant testing and technical justification.
 
-## 15. Licensing
+## 16. Licensing
 
-No root first-party license is currently provided.
+No root first-party license is currently included.
 
-Unless an applicable license is explicitly granted, the public availability of COMPD source code does not automatically grant permission to reproduce, modify, or redistribute its first-party implementation.
+Public availability of source code does not automatically grant permission to reproduce, modify, or redistribute first-party COMPD implementations.
 
-Third-party dependencies and bundled components remain subject to their respective licenses and attribution requirements.
+Third-party components remain subject to their respective licenses and attribution requirements.
 
 ---
 
