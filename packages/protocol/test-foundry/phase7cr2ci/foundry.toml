@@ -1,0 +1,14 @@
+[profile.default]
+src = "../../contracts/production/v3/phase7cr2ch"
+test = "."
+out = "../../out-r2ci"
+cache_path = "../../.r2ci-cache"
+libs = ["../../lib"]
+allow_paths = ["../.."]
+solc_version = "0.8.37"
+evm_version = "shanghai"
+optimizer = true
+optimizer_runs = 1
+via_ir = true
+code_size_limit = 120000
+remappings = ["forge-std/=../../lib/forge-std/src/", "contracts/=../../contracts/", "@openzeppelin/=../../node_modules/@openzeppelin/", "@openzeppelin-contracts-upgradeable/=../../vendor/openzeppelin-contracts-upgradeable/"]
