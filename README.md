@@ -12,13 +12,15 @@
 ![TSLAx](https://img.shields.io/badge/TSLAx-Planned-E82127?style=flat-square&labelColor=141414)
 ![AAPLx](https://img.shields.io/badge/AAPLx-Planned-A2AAAD?style=flat-square&labelColor=141414)
 ![SPYx](https://img.shields.io/badge/SPYx-Planned-1676D2?style=flat-square&labelColor=141414)
-<img width="2243" height="701" alt="image" src="https://github.com/user-attachments/assets/17408c29-babe-461d-bff4-a45870577d0b" />
+<img width="2172" height="724" alt="67db358a-d017-454e-abdb-42323fe6fc3a" src="https://github.com/user-attachments/assets/dece3594-1e58-4476-b693-0d555e3b0443" />
 [Overview](#01-protocol-overview) ·
 [Architecture](docs/ARCHITECTURE.md) ·
 [Agent](packages/agent) ·
 [Smart Contracts](packages/protocol) ·
 [Release v0.1.0](https://github.com/CompdProtocol/CompdProtocol/releases/tag/v0.1.0) ·
 [Security](SECURITY.md)
+
+
 **Built to Compound.**
 
 COMPD is a treasury-driven protocol on BNB Chain, connecting token activity, on-chain capital allocation, autonomous strategy infrastructure, buyback mechanisms, and holder rewards within a unified financial architecture.
