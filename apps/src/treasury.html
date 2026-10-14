@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080807">
+  <meta name="description" content="COMPD Treasury accounts for realized strategy profit and protocol revenue through separate allocation rules.">
+  <meta property="og:title" content="COMPD - BUILT FOR COMPOUNDING"><meta property="og:description" content="COMPD Treasury accounts for realized strategy profit and protocol revenue through separate allocation rules."><meta property="og:type" content="website"><meta property="og:image" content="compd-stack-mark.png">
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="COMPD - BUILT FOR COMPOUNDING"><meta name="twitter:description" content="COMPD Treasury accounts for realized strategy profit and protocol revenue through separate allocation rules."><meta name="twitter:image" content="compd-stack-mark.png">
+  <title>COMPD - BUILT FOR COMPOUNDING</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="compd-favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="compd-touch-icon-180.png">
+  <link rel="stylesheet" href="compd-system.css?v=20261004.1"><link rel="stylesheet" href="compd-atmosphere.css?v=20261004.1"><script>document.documentElement.classList.add('js')</script><script src="vendor/gsap.min.js" defer></script><script src="vendor/ScrollTrigger.min.js" defer></script><script src="compd-page.js?v=20261004.1" defer></script><script src="compd-shell.js?v=20261003.4" defer></script>
+<script src="compd-api.js" defer></script><script src="compd-live.js" defer></script><link rel="stylesheet" href="compd-integration.css">
+</head>
+<body data-scene="treasury">
+  <div class="scene-layer" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div><canvas id="scene"></canvas></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" aria-label="COMPD navigation">
+  <a class="site-brand" href="index.html" aria-label="COMPD home"><img src="compd-stack-mark.png" alt=""><span>COMPD</span></a>
+  <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+<a href="treasury.html" aria-current="page">Treasury</a>
+<a href="agent.html">Agent</a>
+<a href="flow.html">Flow</a>
+<a href="protocol.html">Protocol</a>
+<a href="docs.html">Docs</a>
+  </nav>
+  <div class="header-actions">
+    <a class="header-cta" href="app.html">Open paper workspace <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu"><span></span><span></span></button>
+  </div>
+  <nav class="site-menu" id="site-menu" aria-label="Expanded navigation" hidden>
+    <p class="menu-kicker">COMPD · THE COMPOUNDER</p>
+    <a href="index.html"><span>01</span>Home<b aria-hidden="true">↗</b></a>
+<a href="treasury.html"><span>02</span>Treasury<b aria-hidden="true">↗</b></a>
+<a href="agent.html"><span>03</span>Agent<b aria-hidden="true">↗</b></a>
+<a href="flow.html"><span>04</span>Flow<b aria-hidden="true">↗</b></a>
+<a href="protocol.html"><span>05</span>Protocol<b aria-hidden="true">↗</b></a>
+<a href="docs.html"><span>06</span>Docs<b aria-hidden="true">↗</b></a>
+    <a class="menu-app" href="app.html">Open paper workspace <b aria-hidden="true">↗</b></a>
+  </nav>
+</header>
+  <main class="page-frame page-main" id="main-content">
+  <section class="page-intro"><div class="page-intro-copy"><p class="eyebrow">Treasury / independent ledgers</p><h1>Capital, accounted<br><em>by its source.</em></h1><p>COMPD keeps positive realized Agent profit separate from Flap and protocol revenue. Each flow has its own allocation rules and accounting boundary.</p></div><aside class="intro-aside"><b>REPORTING</b>Backend ledger observation<br><strong class="status-neutral" data-compd-state>Not Available</strong></aside></section>
+  <div class="section-heading"><h2>Two sources. Two allocation rules.</h2><p>Bootstrap is10% Strategy Capital /90% Non-Strategy Treasury Principal. Recurring revenue and positive realized profit use the separate policies below; these percentages are not live balances.</p></div>
+  <section class="split-grid" aria-label="Treasury allocation policy">
+    <article class="surface split-panel"><p class="eyebrow">FLOW 01 / POSITIVE REALIZED AGENT PROFIT</p><h3>After settlement and principal return</h3><p>Only positive realized profit is routed. Returned principal remains principal; unrealized PnL and losses do not enter this split.</p><div class="flow-list"><div class="flow-row"><span>Strategy Capital · compound</span><strong>65%</strong></div><div class="flow-row"><span>Buyback Reserve</span><strong>15%</strong></div><div class="flow-row"><span>Holder Rewards</span><strong>10%</strong></div><div class="flow-row"><span>Protocol Reserve</span><strong>10%</strong></div></div><div class="flow-rule">PROFIT ALLOCATION</div><p class="protocol-note">A realized loss receives no positive-profit allocation. Each reserve remains separately accounted.</p></article>
+    <article class="surface split-panel"><p class="eyebrow">FLOW 02 / FLAP &amp; PROTOCOL REVENUE</p><h3>Revenue received through the Flap path</h3><p>Flap tax proceeds pass through the Native BNB Fee Receiver to the V3 Vault Kernel, then follow this independent revenue allocation.</p><div class="flow-list"><div class="flow-row"><span>Strategy Capital</span><strong>35%</strong></div><div class="flow-row"><span>Buyback Reserve</span><strong>15%</strong></div><div class="flow-row"><span>Protocol Reserve</span><strong>50%</strong></div></div><div class="flow-rule">REVENUE ALLOCATION</div><p class="protocol-note">Protocol revenue is not Agent profit and does not authorize a withdrawal or a transaction.</p></article>
+  </section>
+  <div class="section-heading"><h2>Reporting ledger</h2><p>Balances and history remain unavailable until a verified production reporting source is connected.</p></div>
+  <section class="metrics-grid" aria-label="Treasury reporting availability"><div class="metric"><small>Accounted BNB</small><strong class="is-unavailable" data-compd="treasury.accountedWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Realized profit</small><strong class="is-unavailable" data-compd="treasury.realizedProfitWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Buyback execution</small><strong class="is-unavailable" data-compd="flow.buybackStatus" data-format="state">Not Available</strong></div><div class="metric"><small>Fee receipt sample</small><strong class="is-unavailable" data-compd="treasury.feeSampleWei" data-format="bnb">Not Available</strong></div></section>
+  <div class="section-heading buyback-heading"><h2>Buyback policy</h2><p>Disciplined execution. Bounded by protocol rules.</p></div>
+  <section class="buyback-summary" aria-label="Approved buyback policy limits">
+    <div class="buyback-summary-grid">
+      <article class="buyback-stat"><small>RESERVE TRIGGER</small><strong>0.25 BNB</strong></article>
+      <article class="buyback-stat"><small>PER EXECUTION</small><strong>20% of reserve</strong></article>
+      <article class="buyback-stat"><small>HARD CAP</small><strong>0.50 BNB</strong></article>
+      <article class="buyback-stat"><small>COOLDOWN</small><strong>6 hours</strong></article>
+      <article class="buyback-stat buyback-stat--detail"><small>24H RESERVE LIMIT</small><strong>40% of period-start reserve</strong></article>
+      <article class="buyback-stat buyback-stat--detail"><small>EXECUTION GUARDS</small><strong>3% max slippage · verified quotes required</strong></article>
+    </div>
+    <a class="button-secondary" href="docs.html#buyback">Read full buyback specification <span aria-hidden="true">↗</span></a>
+  </section>
+<section class="surface split-panel protocol-observation" aria-label="Read-only COMPD protocol observations"><p class="eyebrow">COMPD / READ-ONLY PROTOCOL DATA</p><p role="status" aria-live="polite" data-compd-state>Pending — data source not connected</p><p class="protocol-note">Protocol observations are separate from paper simulation. Live xStocks trading is Not Activated; Treasury buyback route and fixed disposal remain unverified; Holder payouts require verified launch, indexing and finalized entitlements.</p><div class="metrics-grid"><div class="metric"><small>Physical Vault BNB</small><strong data-compd="treasury.vaultBalanceWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Pending native receipts (all sources)</small><strong data-compd="treasury.receiverPendingWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Total native forwarded (all sources)</small><strong data-compd="treasury.receiverForwardedWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Strategy Capital</small><strong class="is-unavailable" data-compd="treasury.strategyCapitalWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Non-Strategy Treasury Principal</small><strong class="is-unavailable" data-compd="treasury.treasuryPrincipalWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Buyback Reserve</small><strong class="is-unavailable" data-compd="treasury.buybackReserveWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Protocol Reserve</small><strong class="is-unavailable" data-compd="treasury.protocolReserveWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Holder Reserve</small><strong class="is-unavailable" data-compd="treasury.holderReserveWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Active strategy principal</small><strong class="is-unavailable" data-compd="treasury.activePrincipalWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Realized profit</small><strong class="is-unavailable" data-compd="treasury.realizedProfitWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Realized loss</small><strong class="is-unavailable" data-compd="treasury.realizedLossWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Flap fee receipt sample</small><strong class="is-unavailable" data-compd="treasury.feeSampleWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Fee coverage</small><strong class="is-unavailable" data-compd="treasury.feeCoverage" data-format="state">Not Available</strong></div><div class="metric"><small>Launch transaction</small><strong class="is-unavailable" data-compd="protocol.launchTransactionHash" data-format="">Not Available</strong></div><div class="metric"><small>Bonding phase</small><strong class="is-unavailable" data-compd="flow.bonding.phase" data-format="state">Not Available</strong></div><div class="metric"><small>First15-minute checkpoint</small><strong class="is-unavailable" data-compd="flow.holders.checkpoint.outcome" data-format="state">Not Available</strong></div><div class="metric"><small>Checkpoint countdown</small><strong class="is-unavailable" data-compd="flow.holders.countdownSeconds" data-format="seconds">Not Available</strong></div></div></section>
+</main>
+  <footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-identity"><a class="footer-brand" href="index.html"><img src="compd-stack-mark.png" alt="">COMPD</a><p>The Compounder</p></div>
+    <nav class="footer-links" aria-label="Footer navigation"><a href="treasury.html">Treasury</a><a href="agent.html">Agent</a><a href="flow.html">Flow</a><a href="protocol.html">Protocol</a><a href="docs.html">Documentation</a></nav>
+  </div>
+  <div class="footer-bottom"><span>© 2026 COMPD. All rights reserved.</span><span>Built for compounding.</span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* Landing only. Loads after compd-system.css and reuses its tokens. */
+.landing { background: var(--night); }
+/* Static stand-in when WebGL, JS or motion is unavailable. */
+.scene-fallback { display: none; position: absolute; top: 50%; right: 6vw; width: min(46vw, 620px); transform: translateY(-50%); opacity: .5; }
+.no-scene .scene-fallback { display: block; }
+/* Hide hero copy until the reveal is ready, so it never flashes then re-animates. Failsafe shows it after 2.5s. */
+.js:not(.ready) .home-copy { visibility: hidden; animation: show-copy 0s 2.5s forwards; }
+
+.landing .home-hero::before { display: none; }
+.landing .home-hero { background: transparent; }
+
+.chapter { display: grid; min-height: 100svh; align-items: center; padding: 12vh var(--page-gutter); }
+.chapter-copy { display: flex; max-width: 560px; flex-direction: column; align-items: flex-start; gap: 14px; }
+.chapter-copy small { color: #c39556; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.chapter-copy h2 { margin: 0; font-size: clamp(40px, 5.6vw, 84px); font-weight: 500; letter-spacing: -.05em; line-height: 1; }
+.chapter-copy p { margin: 0; color: #c9c1b4; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.75; }
+.chapter-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; color: #e5c98e; font-family: 'DM Mono', monospace; letter-spacing: .12em; font-size: 13px; text-decoration: none; text-transform: uppercase; border-bottom: 1px solid rgba(228, 173, 79, .35); padding-bottom: 4px; }
+.chapter-link:hover, .chapter-link:focus-visible { color: var(--amber); border-color: var(--amber); }
+.chapter[data-side="left"] { justify-items: start; }
+.chapter[data-side="right"] { justify-items: end; }
+.chapter[data-side="right"] .chapter-copy { align-items: flex-end; text-align: right; }
+.chapter[data-side="center"] { justify-items: center; }
+.chapter[data-side="center"] .chapter-copy { align-items: center; text-align: center; max-width: 560px; }
+.chapter[data-stage="3"] { align-items: end; padding-bottom: 12vh; }
+.chapter-end { min-height: 100svh; }
+/* Legibility without dark blocks: a soft glow behind letters only. */
+.home-copy, .chapter-copy { text-shadow: 0 0 18px rgba(8, 8, 7, .95), 0 0 42px rgba(8, 8, 7, .8); }
+/* Word masks clip shadows into visible boxes, so split headings get no glow. */
+.home-title, .chapter-copy h2 { text-shadow: none; }
+.home-title em .word { padding-right: .06em; }
+/* Giant outline numeral, scrubbed against scroll for depth. */
+.chapter { position: relative; overflow: hidden; }
+.chapter-num { position: absolute; top: 50%; z-index: -1; margin-top: -.5em; color: transparent; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(180px, 34vw, 520px); font-style: italic; line-height: 1; -webkit-text-stroke: 1px rgba(228, 173, 79, .16); pointer-events: none; user-select: none; }
+.chapter[data-side="left"] .chapter-num { right: 4vw; }
+.chapter[data-side="right"] .chapter-num { left: 4vw; }
+.chapter[data-side="center"] .chapter-num { left: 50%; transform: translateX(-50%); top: 22%; }
+.progress-rail { position: fixed; top: 50%; right: 22px; z-index: 2; width: 1px; height: 160px; margin-top: -80px; background: rgba(228, 173, 79, .15); }
+.progress-rail i { display: block; width: 100%; height: 100%; background: var(--gold); transform: scaleY(0); transform-origin: top; }
+.chapter-end .chapter-copy { max-width: 520px; }
+.chapter-end { align-items: center; }
+
+@media (max-width: 900px) {
+  .chapter { align-items: end; padding-bottom: 14vh; }
+  .chapter-copy { max-width: 100%; }
+  .chapter[data-side] { justify-items: stretch; }
+  .chapter[data-side="right"] .chapter-copy { align-items: flex-start; text-align: left; }
+  .chapter[data-side="center"] .chapter-copy { align-items: flex-start; text-align: left; }
+  .chapter-copy p { font-size: 16px; }
+  .chapter-copy h2 { font-size: clamp(34px, 9.5vw, 44px); }
+  .chapter-num { top: 14%; font-size: 52vw; }
+  .chapter[data-side] .chapter-num { left: auto; right: -2vw; transform: none; }
+  .progress-rail { display: none; }
+  .chapter-end { align-items: center; padding-bottom: 12vh; }
+  .chapter-end .chapter-copy, .chapter[data-side].chapter-end .chapter-copy { align-items: center; max-width: 300px; margin: 0 auto; text-align: center; }
+  .scene-fallback { right: 50%; width: 80vw; transform: translate(50%, -60%); opacity: .35; }
+}
+.landing .home-lead { max-width: 760px; color: #c9c1b4; font-size: clamp(16px, 1.3vw, 20px); }
+.landing .home-label { font-size: 12px; }
+.landing .home-hero .button-primary { min-height: 52px; padding: 0 26px; font-size: 15px; }
+@media (max-width: 900px) { .landing .home-hero .button-primary { min-height: 48px; font-size: 14px; } .landing .home-label { font-size: 10px; } }
+
+[data-stage="1"] .glow-a { transform: translate(55vw, 10vh); }
+[data-stage="1"] .glow-b { transform: translate(-10vw, -20vh); }
+[data-stage="2"] .glow-a { transform: translate(5vw, 30vh) scale(1.15); background: radial-gradient(closest-side, rgba(176, 120, 48, .36), transparent); }
+[data-stage="2"] .glow-b { transform: translate(-50vw, -10vh); }
+[data-stage="3"] .glow-a { transform: translate(30vw, 5vh) scale(1.3); }
+[data-stage="3"] .glow-b { transform: translate(-30vw, -35vh) scale(.8); }
+[data-stage="4"] .glow-a { transform: translate(60vw, 30vh) scale(.9); background: radial-gradient(closest-side, rgba(130, 82, 41, .42), transparent); }
+[data-stage="4"] .glow-b { transform: translate(-5vw, -15vh) scale(1.2); }
+[data-stage="5"] .glow-a { transform: translate(0, 35vh); }
+[data-stage="5"] .glow-b { transform: translate(-45vw, -40vh); background: radial-gradient(closest-side, rgba(160, 112, 56, .3), transparent); }
+[data-stage="6"] .glow-a { transform: translate(35vw, 25vh) scale(1.2); opacity: .7; }
+[data-stage="6"] .glow-b { transform: translate(-35vw, -30vh) scale(1.2); opacity: .7; }
+/* Soft snap: free scrolling, settles onto a chapter when stopping near one. */
+html:has(body.landing) { scroll-snap-type: y proximity; }
+.landing .home-hero, .landing .chapter { scroll-snap-align: start; }
+/* Footer needs its own snap point, otherwise snap pulls back to the last chapter. */
+.landing .site-footer { scroll-snap-align: end; }

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080807">
+  <meta name="description" content="COMPD protocol architecture separates revenue intake, Vault accounting and guarded execution.">
+  <meta property="og:title" content="COMPD - BUILT FOR COMPOUNDING"><meta property="og:description" content="COMPD protocol architecture separates revenue intake, Vault accounting and guarded execution."><meta property="og:type" content="website"><meta property="og:image" content="compd-stack-mark.png">
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="COMPD - BUILT FOR COMPOUNDING"><meta name="twitter:description" content="COMPD protocol architecture separates revenue intake, Vault accounting and guarded execution."><meta name="twitter:image" content="compd-stack-mark.png">
+  <title>COMPD - BUILT FOR COMPOUNDING</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="compd-favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="compd-touch-icon-180.png">
+  <link rel="stylesheet" href="compd-system.css?v=20261004.1"><link rel="stylesheet" href="compd-atmosphere.css?v=20261004.1"><script>document.documentElement.classList.add('js')</script><script src="vendor/gsap.min.js" defer></script><script src="vendor/ScrollTrigger.min.js" defer></script><script src="compd-page.js?v=20261004.1" defer></script><script src="compd-shell.js?v=20261003.4" defer></script>
+<script src="compd-api.js" defer></script><script src="compd-live.js" defer></script><link rel="stylesheet" href="compd-integration.css">
+</head>
+<body data-scene="protocol">
+  <div class="scene-layer" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div><canvas id="scene"></canvas></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" aria-label="COMPD navigation">
+  <a class="site-brand" href="index.html" aria-label="COMPD home"><img src="compd-stack-mark.png" alt=""><span>COMPD</span></a>
+  <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+<a href="treasury.html">Treasury</a>
+<a href="agent.html">Agent</a>
+<a href="flow.html">Flow</a>
+<a href="protocol.html" aria-current="page">Protocol</a>
+<a href="docs.html">Docs</a>
+  </nav>
+  <div class="header-actions">
+    <a class="header-cta" href="app.html">Open paper workspace <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu"><span></span><span></span></button>
+  </div>
+  <nav class="site-menu" id="site-menu" aria-label="Expanded navigation" hidden>
+    <p class="menu-kicker">COMPD · THE COMPOUNDER</p>
+    <a href="index.html"><span>01</span>Home<b aria-hidden="true">↗</b></a>
+<a href="treasury.html"><span>02</span>Treasury<b aria-hidden="true">↗</b></a>
+<a href="agent.html"><span>03</span>Agent<b aria-hidden="true">↗</b></a>
+<a href="flow.html"><span>04</span>Flow<b aria-hidden="true">↗</b></a>
+<a href="protocol.html"><span>05</span>Protocol<b aria-hidden="true">↗</b></a>
+<a href="docs.html"><span>06</span>Docs<b aria-hidden="true">↗</b></a>
+    <a class="menu-app" href="app.html">Open paper workspace <b aria-hidden="true">↗</b></a>
+  </nav>
+</header>
+  <main class="page-frame page-main" id="main-content">
+  <section class="page-intro"><div class="page-intro-copy"><p class="eyebrow">Protocol / architecture</p><h1>Autonomy,<br><em>inside boundaries.</em></h1><p>COMPD separates Flap revenue intake, Vault accounting and guarded strategy or buyback execution. The off-chain Agent prepares decisions while protocol rules constrain actions.</p></div><aside class="intro-aside"><b>DESIGN PRINCIPLE</b>Distinct custody, accounting and execution roles</aside></section>
+  <div class="section-heading"><h2>System topology</h2><p>Separate intake, custody, accounting and trigger authority.</p></div>
+  <section class="architecture" aria-label="COMPD protocol architecture">
+    <div class="arch-node"><span class="arch-index">01 / SOURCE</span><strong>Flap V3</strong><small>Protocol revenue source</small></div><div class="arch-connector" aria-hidden="true"></div>
+    <div class="arch-node"><span class="arch-index">02 / ADAPTER</span><strong>Native BNB Fee Receiver</strong><small>Receives the Flap allocation and forwards it to the V3 Vault Kernel</small></div><div class="arch-connector" aria-hidden="true"></div>
+    <div class="arch-node"><span class="arch-index">03 / ACCOUNTING</span><strong>COMPD V3 Vault Kernel</strong><small>Separately accounts Strategy Capital, Buyback Reserve and Protocol Reserve</small></div>
+    <div class="arch-branches"><article class="arch-branch"><b>Strategy Capital</b><span>Supports bounded strategy allocations and receives eligible returned capital and compound allocation.</span></article><article class="arch-branch"><b>Buyback Reserve</b><span>Funds only guarded buyback routes within approved limits and market protections.</span></article><article class="arch-branch"><b>Protocol Reserve</b><span>Accounts for protocol-owned operating capital separately.</span></article></div>
+    <div class="arch-connector" aria-hidden="true"></div><div class="arch-node"><span class="arch-index">04 / EXECUTION</span><strong>Strategy and Buyback Executors</strong><small>The narrow executor role can trigger guarded paths; it cannot custody or freely transfer Vault assets.</small></div>
+  </section>
+  <div class="section-heading"><h2>On-chain guardrails</h2><p>Policy boundaries for holder access, capital exposure and execution.</p></div>
+  <section class="policy-grid guardrail-grid" aria-label="Protocol guardrails">
+    <article class="policy"><small>HOLDER ACCESS</small><strong>500,000 COMPD · hold-only</strong><p>Read-only Agent Intelligence; no staking, deposit, lockup or operational authority.</p></article>
+    <article class="policy"><small>STRATEGY EXPOSURE</small><strong>30% aggregate · 10% per position</strong><p>At most three concurrent positions; spot-equivalent 1× with no borrowing or margin.</p></article>
+    <article class="policy"><small>LOSS BOUNDARIES</small><strong>3% designed position loss</strong><p>A daily realized-loss circuit and equity drawdown guard restrict new exposure.</p></article>
+    <article class="policy"><small>BUYBACK</small><strong>Bounded by reserve and market controls</strong><p>20% per execution, 0.50 BNB-equivalent hard cap, six-hour cooldown and 40% period cap.</p></article>
+    <article class="policy"><small>PAUSE CONTROL</small><strong>Reversible operations latch</strong><p>Restricts new exposure, buybacks and exposure-increasing compound activity.</p></article>
+    <article class="policy"><small>ROLE SEPARATION</small><strong>Execution is narrowly scoped</strong><p>Agent preparation, guarded execution, administration and treasury controls remain distinct.</p></article>
+  </section>
+  <div class="cta-row"><a class="button-secondary" href="docs.html#safeguards">Read protocol safeguards ↗</a><a class="button-secondary" href="treasury.html">Treasury accounting</a></div>
+<section class="surface split-panel protocol-observation" aria-label="Read-only COMPD protocol observations"><p class="eyebrow">COMPD / READ-ONLY PROTOCOL DATA</p><p role="status" aria-live="polite" data-compd-state>Pending — data source not connected</p><p class="protocol-note">Protocol observations are separate from paper simulation. Live xStocks trading is Not Activated; Treasury buyback route and fixed disposal remain unverified; Holder payouts require verified launch, indexing and finalized entitlements.</p><div class="metrics-grid"><div class="metric"><small>Protocol status</small><strong class="is-unavailable" data-compd="protocol.status" data-format="state">Not Available</strong></div><div class="metric"><small>Network chain ID</small><strong class="is-unavailable" data-compd="protocol.chainId" data-format="">Not Available</strong></div><div class="metric"><small>Reserved COMPD CA</small><strong class="is-unavailable" data-compd="protocol.reservedToken" data-format="">Not Available</strong></div><div class="metric"><small>Token verification</small><strong class="is-unavailable" data-compd="protocol.tokenStatus" data-format="state">Not Available</strong></div><div class="metric"><small>Observed block</small><strong class="is-unavailable" data-compd="snapshot.blockNumber" data-format="">Not Available</strong></div><div class="metric"><small>Launch transaction</small><strong class="is-unavailable" data-compd="protocol.launchTransactionHash" data-format="">Not Available</strong></div><div class="metric"><small>Bonding phase</small><strong class="is-unavailable" data-compd="flow.bonding.phase" data-format="state">Not Available</strong></div><div class="metric"><small>First15-minute checkpoint</small><strong class="is-unavailable" data-compd="flow.holders.checkpoint.outcome" data-format="state">Not Available</strong></div><div class="metric"><small>Checkpoint countdown</small><strong class="is-unavailable" data-compd="flow.holders.countdownSeconds" data-format="seconds">Not Available</strong></div></div><h3>Contract observations</h3><p class="protocol-note">Backend code-pin matches are not independent deployment clearance. The token CA remains reserved.</p><div data-compd-contracts>Not Available</div></section>
+<section class="surface split-panel protocol-observation" aria-label="Emergency shutdown and recovery observations">
+  <p class="eyebrow">COMPD / SHUTDOWN &amp; RECOVERY</p><h2>Protected recovery.</h2>
+  <p class="protocol-note">Guardian-only shutdown stops new risk immediately. Termination retains settlement checks and its 72-hour delay. Finalized holder obligations remain backed; free assets recover only to the fixed Recovery Treasury. This panel is read-only.</p>
+  <div class="metrics-grid">
+    <div class="metric"><small>Observed lifecycle</small><strong class="is-unavailable" data-compd="protocol.recovery.lifecycle" data-format="state">Not Available</strong></div>
+    <div class="metric"><small>Kernel recoverable BNB after termination</small><strong class="is-unavailable" data-compd="protocol.recovery.recoverableNativeWei" data-format="bnb">Not Available</strong></div>
+    <div class="metric"><small>Protected Holder Rewards</small><strong class="is-unavailable" data-compd="protocol.recovery.protectedHolderWei" data-format="bnb">Not Available</strong></div>
+    <div class="metric"><small>Unsettled principal</small><strong class="is-unavailable" data-compd="protocol.recovery.unsettledPrincipalWei" data-format="bnb">Not Available</strong></div>
+    <div class="metric"><small>Recovery Treasury</small><strong data-compd="protocol.recovery.treasury">0xFa8706AA97B07cb29096381f9101784bA0d1332b</strong></div>
+  </div>
+  <h3>Connected custody</h3><div data-compd-recoverable-vaults>Not Available</div>
+  <h3>Confirmed recovery transactions</h3><p class="protocol-note">Successful, confirmed receipts and pinned contract events only. A bounded recent window is shown; this is not complete history or independent audit clearance.</p><div data-compd-recovery>Not Available</div>
+</section>
+</main>
+  <footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-identity"><a class="footer-brand" href="index.html"><img src="compd-stack-mark.png" alt="">COMPD</a><p>The Compounder</p></div>
+    <nav class="footer-links" aria-label="Footer navigation"><a href="treasury.html">Treasury</a><a href="agent.html">Agent</a><a href="flow.html">Flow</a><a href="protocol.html">Protocol</a><a href="docs.html">Documentation</a></nav>
+  </div>
+  <div class="footer-bottom"><span>© 2026 COMPD. All rights reserved.</span><span>Built for compounding.</span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "compd-frontend-handoff",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend-only COMPD public website handoff package",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node tools/dev-server.mjs",
+    "start": "node tools/dev-server.mjs",
+    "build": "node tools/build.mjs",
+    "preview": "node tools/dev-server.mjs --dist",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check site.config.mjs && node --check tools/dev-server.mjs && node --check tools/build.mjs && node --check test/handoff.test.mjs && node --check src/compd-shell.js && node --check src/flow-page.js && node --check src/landing.js && node --check src/compd-scene.js && node --check src/compd-page.js && node --check tools/protocol-api.mjs && node --check src/compd-api.js && node --check src/compd-live.js"
+  }
+}

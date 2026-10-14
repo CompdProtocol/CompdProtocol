@@ -1,0 +1,7 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {holderProjection} from '../tools/holder-api.mjs';
+const hash='0x'+'a'.repeat(64),address='0x'+'b'.repeat(40);
+test('no configured index shows unavailable, never fictional money',()=>{let x=holderProjection();assert.equal(x.allocatedWei,null);assert.deepEqual(x.top30,[]);assert.match(x.status,/NOT_ACTIVATED/);});
+test('unanchored report cannot display live balances',()=>assert.equal(holderProjection({poolWei:'10'}).allocatedWei,null));
+test('confirmed holder observations remain labelled inactive and scoped',()=>{const x=holderProjection({indexedThroughHash:hash,indexedThroughBlock:10,poolWei:'101',paidRewardsWei:'9',pendingLiabilitiesWei:'1',top30:[{address,weight:'900',amountWei:'101'}],payoutTransactions:[{transactionHash:hash,recipient:address,amount:'9'}]});assert.equal(x.allocatedWei,'101');assert.equal(x.payouts.length,1);assert.match(x.status,/DRY_RUN/);assert.match(x.totalsScope,/ALL_INDEXED/);});
+test('sanitized invalid amounts and private configuration',()=>{const x=holderProjection({indexedThroughHash:hash,indexedThroughBlock:10,poolWei:'-1',privateKey:'SECRET',top30:[{address:'invalid',weight:'9',amountWei:'10'}]});assert.equal(x.allocatedWei,null);assert.deepEqual(x.top30,[]);assert.doesNotMatch(JSON.stringify(x),/SECRET/);});
+test('top30 and payout list bounds',()=>{const row={address,weight:'900',amountWei:'101'};assert.equal(holderProjection({indexedThroughHash:hash,indexedThroughBlock:10,top30:Array(40).fill(row)}).top30.length,30);});

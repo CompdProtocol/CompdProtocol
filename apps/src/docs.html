@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080807">
+  <meta name="description" content="COMPD documentation explains holder access, independent accounting flows and guarded protocol execution.">
+  <meta property="og:title" content="COMPD - BUILT FOR COMPOUNDING"><meta property="og:description" content="COMPD documentation explains holder access, independent accounting flows and guarded protocol execution."><meta property="og:type" content="website"><meta property="og:image" content="compd-stack-mark.png">
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="COMPD - BUILT FOR COMPOUNDING"><meta name="twitter:description" content="COMPD documentation explains holder access, independent accounting flows and guarded protocol execution."><meta name="twitter:image" content="compd-stack-mark.png">
+  <title>COMPD - BUILT FOR COMPOUNDING</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="compd-favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="compd-touch-icon-180.png">
+  <link rel="stylesheet" href="compd-system.css?v=20261004.1"><link rel="stylesheet" href="compd-atmosphere.css?v=20261004.1"><script>document.documentElement.classList.add('js')</script><script src="vendor/gsap.min.js" defer></script><script src="vendor/ScrollTrigger.min.js" defer></script><script src="compd-page.js?v=20261004.1" defer></script><script src="compd-shell.js?v=20261003.4" defer></script>
+<script src="compd-api.js" defer></script><script src="compd-live.js" defer></script><link rel="stylesheet" href="compd-integration.css">
+</head>
+<body data-scene="docs">
+  <div class="scene-layer" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div><canvas id="scene"></canvas></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" aria-label="COMPD navigation">
+  <a class="site-brand" href="index.html" aria-label="COMPD home"><img src="compd-stack-mark.png" alt=""><span>COMPD</span></a>
+  <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a>
+<a href="treasury.html">Treasury</a>
+<a href="agent.html">Agent</a>
+<a href="flow.html">Flow</a>
+<a href="protocol.html">Protocol</a>
+<a href="docs.html" aria-current="page">Docs</a>
+  </nav>
+  <div class="header-actions">
+    <a class="header-cta" href="app.html">Open paper workspace <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu"><span></span><span></span></button>
+  </div>
+  <nav class="site-menu" id="site-menu" aria-label="Expanded navigation" hidden>
+    <p class="menu-kicker">COMPD · THE COMPOUNDER</p>
+    <a href="index.html"><span>01</span>Home<b aria-hidden="true">↗</b></a>
+<a href="treasury.html"><span>02</span>Treasury<b aria-hidden="true">↗</b></a>
+<a href="agent.html"><span>03</span>Agent<b aria-hidden="true">↗</b></a>
+<a href="flow.html"><span>04</span>Flow<b aria-hidden="true">↗</b></a>
+<a href="protocol.html"><span>05</span>Protocol<b aria-hidden="true">↗</b></a>
+<a href="docs.html"><span>06</span>Docs<b aria-hidden="true">↗</b></a>
+    <a class="menu-app" href="app.html">Open paper workspace <b aria-hidden="true">↗</b></a>
+  </nav>
+</header>
+  <main class="page-frame page-main" id="main-content">
+  <section class="page-intro"><div class="page-intro-copy"><p class="eyebrow">COMPD / documentation</p><h1>Built around<br><em>clear boundaries.</em></h1><p>COMPD separates holder access, treasury accounting and guarded execution into distinct layers. Holders retain custody of their tokens while protocol-controlled capital follows defined rules.</p></div><aside class="intro-aside"><b>DOCUMENTATION</b>Holder access · Accounting · Protocol safeguards</aside></section>
+  <div class="docs-layout">
+    <nav class="docs-toc" aria-label="On this page"><small>On this page</small><a href="#overview">Overview</a><a href="#holder-access">Holder access</a><a href="#accounting">Accounting flows</a><a href="#buyback">Buyback policy</a><a href="#strategy-risk">Strategy boundaries</a><a href="#safeguards">Protocol safeguards</a><a href="#architecture">Architecture</a><a href="#faq">FAQ</a></nav>
+    <div class="docs-content">
+      <section class="doc-block" id="overview"><p class="doc-kicker">01 / Overview</p><h2>What COMPD is designed to do</h2><p>COMPD is a holder-access strategy framework built around project treasury separation. Holders keep tokens in their own wallets. Agent Intelligence is read-only; it does not grant custody over strategy funds or operational control.</p><div class="doc-callout"><strong>BUILT AROUND CLEAR BOUNDARIES</strong><br>Holder access, treasury accounting and guarded execution remain separate parts of the system.</div></section>
+      <section class="doc-block" id="holder-access"><p class="doc-kicker">02 / Holder access</p><h2>Hold-only qualification</h2><p>The V1 threshold is 500,000 COMPD at 18 decimals. Qualification is based on holding the balance; no staking, deposit, lockup, personal vault or user trading balance is required. Holder Intelligence is read-only and may include the current strategy, signal, market, timeframe, entry, target, invalidation, reason summary and position progress.</p><p>Holders are passive. Top30 eligible holders with at least500,000 COMPD are ranked by TWAB; no staking, deposits, locking or manual claims. The initial checkpoint is launch+15minutes, followed by regular UTC8-hour windows. The initial onchain payout remains Not Activated. Holder access grants no treasury, strategy, administrative, governance or execution authority.</p></section>
+      <section class="doc-block" id="accounting"><p class="doc-kicker">03 / Accounting</p><h2>Keep the two flows separate</h2><p>Bootstrap is10% Strategy Capital /90% Non-Strategy Treasury Principal. Each recurring allocation follows its own economic source. Positive realized Agent profit is routed only after settlement and principal return. Flap protocol revenue follows a separate allocation. Unrealized PnL, returned principal and losses do not enter the profit split.</p><div class="docs-table-wrap"><table class="docs-table"><thead><tr><th>Source</th><th>Strategy Capital</th><th>Buyback Reserve</th><th>Holder Rewards</th><th>Protocol Reserve</th><th>Rule</th></tr></thead><tbody><tr><td>Positive realized Agent profit</td><td>65%</td><td>15%</td><td>10%</td><td>10%</td><td>After settlement and principal return</td></tr><tr><td>Flap / protocol revenue</td><td>35%</td><td>15%</td><td>—</td><td>50%</td><td>Separate revenue ledger</td></tr></tbody></table></div><p>Allocation rules describe policy. Treasury balances and realized activity are reported only from verified production data.</p></section>
+      <section class="doc-block" id="buyback"><p class="doc-kicker">04 / Buyback policy</p><h2>Disciplined execution. Bounded by protocol rules.</h2><p>Buyback Reserve may be used only through a guarded execution path. The requested amount is bounded by the reserve percentage, immutable hard cap and remaining period allowance.</p><div class="docs-table-wrap"><table class="docs-table"><thead><tr><th>Control</th><th>Approved V1 limit</th><th>Purpose</th></tr></thead><tbody><tr><td>Reserve trigger</td><td>0.25 BNB-equivalent</td><td>Minimum reserve before an execution can be considered</td></tr><tr><td>Execution size</td><td>20% of current reserve</td><td>Bounded per-execution amount</td></tr><tr><td>Hard cap</td><td>0.50 BNB-equivalent</td><td>Maximum amount for one execution</td></tr><tr><td>Cooldown</td><td>6 hours</td><td>Minimum spacing after a successful execution</td></tr><tr><td>24-hour reserve limit</td><td>40% of period-start reserve</td><td>Later deposits do not increase that period’s cap</td></tr><tr><td>Execution guards</td><td>3% max slippage · verified quotes required</td><td>Approved route, fresh verified quotes and bounded execution</td></tr></tbody></table></div><p>Permissionless requests remain subject to Kernel custody, activation and spending limits. It cannot custody reserves, administer limits or choose an arbitrary recipient. Execution is blocked outside the permitted protocol state.</p></section>
+      <section class="doc-block" id="strategy-risk"><p class="doc-kicker">05 / Strategy boundaries</p><h2>Capital limits are explicit</h2><p>Approved assets: NVDAx, TSLAx, AMZNx, AAPLx, SPYx. The live Agent evaluates every8hours plus immediate launch evaluation. Live trading is Not Activated pending approved venue, price validation, entry/exit and settlement.</p><ul><li>Maximum aggregate active capital exposure: 30% of Strategy Capital.</li><li>Maximum per-position exposure: 10% of Strategy Capital; no more than three concurrent positions.</li><li>Spot-equivalent 1× only. No borrowing or margin.</li><li>Daily realized-loss circuit: 5% of Strategy Capital at the start of the UTC day.</li><li>Drawdown guard: 10% from reconciled equity high-water mark; new entries require Guardian review and explicit resume after a breach.</li><li>Designed loss for one position may not exceed 3% of trade principal.</li><li>New exposure and buybacks require an approved market/asset route and verified, sufficiently fresh pricing.</li></ul><p>Paper risk metrics are virtual accounting. They do not demonstrate production enforcement or investment performance.</p></section>
+      <section class="doc-block" id="safeguards"><p class="doc-kicker">06 / Protocol safeguards</p><h2>Designed to protect capital under changing conditions.</h2><p>Protocol-level safeguards restrict execution when defined operating conditions are not met. Strategy execution and treasury operations remain separated, with privileged actions constrained by explicit roles and protocol rules.</p><div class="safeguard-grid"><article><small>PAUSE CONTROL</small><p>Temporarily restricts new execution while preserving treasury accounting.</p></article><article><small>ROLE SEPARATION</small><p>Operational roles remain separated across execution, administration and treasury controls.</p></article><article><small>PROTECTED RECOVERY</small><p>Recovery paths are restricted by protocol state and predefined authorization rules.</p></article></div></section>
+      <section class="doc-block" id="architecture"><p class="doc-kicker">07 / Architecture</p><h2>Intended component boundaries</h2><div class="code-block">Flap V3
+  ↓
+Native BNB Fee Receiver
+  ↓
+COMPD V3 Vault Kernel
+  ├── Strategy Capital
+  ├── Buyback Reserve
+  └── Protocol Reserve
+
+Off-chain Agent
+  ↓ prepares requests
+Guarded Strategy / Buyback Executors
+  ↓ invoke permitted paths
+V3 Vault Kernel accounting</div><p>The Agent is off-chain strategy software, not an asset custodian. The Automation Executor may trigger narrow guarded paths. It has no Vault custody, arbitrary-transfer, admin, configuration, pause, shutdown or recovery authority. Flap platform administration remains separate from the COMPD Vault roles.</p></section>
+      <section class="doc-block" id="faq"><p class="doc-kicker">08 / FAQ</p><h2>Questions &amp; answers</h2><div class="docs-faq">
+        <details><summary>Do holders need to deposit COMPD?</summary><p>No. Qualification is hold-only. Tokens stay in the holder’s wallet; no staking, deposit or lockup is required for Agent Intelligence access.</p></details>
+        <details><summary>Can COMPD holders direct treasury activity?</summary><p>No. Holder access is read-only and grants no treasury, strategy, administrative, governance or execution authority.</p></details>
+        <details><summary>How does COMPD account for treasury activity?</summary><p>Strategy Capital, Buyback Reserve and Protocol Reserve are accounted separately under defined rules. Agent profit and Flap revenue use different allocation splits.</p></details>
+        <details><summary>How do COMPD buybacks work?</summary><p>Buybacks use a guarded execution path with predefined reserve thresholds, execution limits, cooldowns, approved routes and market-protection controls.</p></details>
+        <details><summary>How does the Agent interact with the treasury?</summary><p>The Agent prepares strategy decisions. Guarded protocol components enforce execution and treasury boundaries.</p></details>
+        <details><summary>What is the paper workspace for?</summary><p>It observes strategy behavior in an isolated paper environment. It does not interact with production treasury capital, and its results are not production performance.</p></details>
+        <details><summary>Does COMPD V1 distribute holder rewards?</summary><p>No. V1 uses hold-only access to read-only Agent Intelligence; it does not include staking, holder reward distributions or claim custody.</p></details>
+      </div></section>
+    </div>
+  </div>
+</main>
+  <footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-identity"><a class="footer-brand" href="index.html"><img src="compd-stack-mark.png" alt="">COMPD</a><p>The Compounder</p></div>
+    <nav class="footer-links" aria-label="Footer navigation"><a href="treasury.html">Treasury</a><a href="agent.html">Agent</a><a href="flow.html">Flow</a><a href="protocol.html">Protocol</a><a href="docs.html">Documentation</a></nav>
+  </div>
+  <div class="footer-bottom"><span>© 2026 COMPD. All rights reserved.</span><span>Built for compounding.</span></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+/* Shared atmosphere: ambient glows, optional particle canvas, vignette and film grain behind page content. */
+.scene-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.scene-layer canvas { position: relative; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 1.6s ease; }
+.scene-on .scene-layer canvas { opacity: 1; }
+.glow { position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%; filter: blur(60px); opacity: .5; transition: transform 2.4s cubic-bezier(.4, 0, .2, 1), background 2.4s ease, opacity 2.4s ease; }
+.glow-a { top: -20vmax; left: -15vmax; background: radial-gradient(closest-side, rgba(150, 92, 34, .38), transparent); }
+.glow-b { right: -20vmax; bottom: -25vmax; background: radial-gradient(closest-side, rgba(110, 72, 36, .3), transparent); }
+.scene-layer::before { position: absolute; z-index: 2; inset: 0; background: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 55%, rgba(0, 0, 0, .6)); content: ''; }
+.scene-layer::after { position: absolute; z-index: 3; inset: -50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: .07; content: ''; animation: grain 1s steps(4) infinite; }
+@keyframes grain { 0% { transform: translate(0, 0); } 25% { transform: translate(-3%, 2%); } 50% { transform: translate(2%, -3%); } 75% { transform: translate(-2%, -1%); } 100% { transform: translate(0, 0); } }
+.scene-layer ~ main, .scene-layer ~ footer, .scene-layer ~ .app-wrap { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: reduce) { .scene-layer::after { animation: none; } .glow, .scene-layer canvas { transition: none; } }
+/* Word-mask reveal shared by landing and content pages. Hidden until the reveal is ready; failsafe shows it after 2.5s. */
+.word { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.word > span { display: inline-block; }
+.page-intro h1 em .word { padding-right: .06em; }
+.js:not(.ready) .page-intro { visibility: hidden; animation: show-copy 0s 2.5s forwards; }
+@keyframes show-copy { to { visibility: visible; } }
+/* Intro particle pages: room for the form on the right, status box floats above it. */
+[data-scene] .page-intro { min-height: min(62vh, 620px); align-items: center; }
+[data-scene] .intro-aside { background: rgba(12, 12, 10, .72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }

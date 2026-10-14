@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080807">
+  <meta name="description" content="Explore how COMPD separates protocol revenue, strategy capital, realized profit and guarded buybacks.">
+  <meta property="og:title" content="COMPD Flow - Capital in Motion"><meta property="og:description" content="An architectural view of how capital moves through COMPD."><meta property="og:type" content="website"><meta property="og:image" content="compd-stack-mark.png">
+  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="COMPD Flow - Capital in Motion"><meta name="twitter:description" content="An architectural view of how capital moves through COMPD."><meta name="twitter:image" content="compd-stack-mark.png">
+  <title>COMPD Flow - Capital in Motion</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="compd-favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="compd-touch-icon-180.png">
+  <link rel="stylesheet" href="compd-system.css?v=20261004.1"><link rel="stylesheet" href="compd-atmosphere.css?v=20261004.1"><script>document.documentElement.classList.add('js')</script><link rel="stylesheet" href="flow-page.css?v=20261004.2"><script src="compd-shell.js?v=20261003.4" defer></script><script src="flow-page.js?v=20261004.2" defer></script>
+<script src="compd-api.js" defer></script><script src="compd-live.js" defer></script><script src="compd-manual.js" defer></script><link rel="stylesheet" href="compd-integration.css">
+</head>
+<body>
+  <div class="scene-layer" aria-hidden="true"><div class="glow glow-a"></div><div class="glow glow-b"></div></div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header" aria-label="COMPD navigation">
+    <a class="site-brand" href="index.html" aria-label="COMPD home"><img src="compd-stack-mark.png" alt=""><span>COMPD</span></a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="index.html">Home</a><a href="treasury.html">Treasury</a><a href="agent.html">Agent</a><a href="flow.html" aria-current="page">Flow</a><a href="protocol.html">Protocol</a><a href="docs.html">Docs</a>
+    </nav>
+    <div class="header-actions">
+      <a class="header-cta" href="app.html">Open paper workspace <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu"><span></span><span></span></button>
+    </div>
+    <nav class="site-menu" id="site-menu" aria-label="Expanded navigation" hidden>
+      <p class="menu-kicker">COMPD · THE COMPOUNDER</p>
+      <a href="index.html"><span>01</span>Home<b aria-hidden="true">↗</b></a>
+      <a href="treasury.html"><span>02</span>Treasury<b aria-hidden="true">↗</b></a>
+      <a href="agent.html"><span>03</span>Agent<b aria-hidden="true">↗</b></a>
+      <a href="flow.html" aria-current="page"><span>04</span>Flow<b aria-hidden="true">↗</b></a>
+      <a href="protocol.html"><span>05</span>Protocol<b aria-hidden="true">↗</b></a>
+      <a href="docs.html"><span>06</span>Docs<b aria-hidden="true">↗</b></a>
+      <a class="menu-app" href="app.html">Open paper workspace <b aria-hidden="true">↗</b></a>
+    </nav>
+  </header>
+
+  <main class="flow-page" id="main-content">
+    <section class="flow-hero" aria-labelledby="flow-title">
+      <p class="flow-kicker">COMPD / CAPITAL FLOW</p>
+      <h1 id="flow-title">Capital,<em>in motion.</em></h1>
+      <p>Follow how capital enters COMPD, moves through protected allocations, and returns through strategy, compounding and buybacks.</p>
+    </section>
+
+    <section class="flow-experience" aria-label="Interactive capital architecture">
+      <div class="flow-controls">
+        <div class="flow-tabs" role="tablist" aria-label="Choose a capital flow">
+          <button id="flow-tab-revenue" type="button" role="tab" aria-selected="true" aria-controls="flow-panel-revenue" tabindex="0" data-flow-tab="revenue">Revenue Flow</button>
+          <button id="flow-tab-strategy" type="button" role="tab" aria-selected="false" aria-controls="flow-panel-strategy" tabindex="-1" data-flow-tab="strategy">Strategy Flow</button>
+          <button id="flow-tab-buyback" type="button" role="tab" aria-selected="false" aria-controls="flow-panel-buyback" tabindex="-1" data-flow-tab="buyback">Buyback Flow</button>
+        </div>
+        <p class="flow-legend"><span class="dot dot--gold" aria-hidden="true"></span>1 dot = 1% of the flow<span class="dot dot--ivory" aria-hidden="true"></span>Principal</p>
+        <p class="flow-status"><span aria-hidden="true"></span>Approved architecture · no verified live production data</p>
+      </div>
+      <div class="flow-panels">
+        <section class="flow-panel" id="flow-panel-revenue" role="tabpanel" aria-labelledby="flow-tab-revenue" tabindex="0" data-flow-panel="revenue">
+          <header class="flow-panel-heading">
+            <p class="flow-index">01 / PROTOCOL REVENUE</p>
+            <h2>Separate by source.<em>Account by purpose.</em></h2>
+            <p>Flap and protocol revenue follows its own allocation path.</p>
+          </header>
+          <div class="flow-canvas" data-flow-stage="revenue"></div>
+          <ol class="flow-steps"><li><b>Revenue enters through one path.</b><span>Flap tax proceeds pass through the Native BNB Fee Receiver into the COMPD V3 Vault Kernel: one custody boundary with separate ledgers.</span></li><li><b>Split by policy, not by choice.</b><span>Of every 100 parts of protocol revenue, 35 go to Strategy Capital, 15 to the Buyback Reserve and 50 to the Protocol Reserve.</span></li></ol>
+        </section>
+        <section class="flow-panel" id="flow-panel-strategy" role="tabpanel" aria-labelledby="flow-tab-strategy" tabindex="0" data-flow-panel="strategy">
+          <header class="flow-panel-heading">
+            <p class="flow-index">02 / AGENT PROFIT</p>
+            <h2>Decisions stay separate.<em>Execution stays bounded.</em></h2>
+            <p>Principal and profit take different roads at settlement.</p>
+          </header>
+          <div class="flow-canvas" data-flow-stage="strategy"></div>
+          <ol class="flow-steps"><li><b>Principal is accounted separately.</b><span>Strategy Capital takes a bounded position. Returned principal remains Strategy Capital and never enters a profit split; losses are accounted separately.</span></li><li><b>Only realized profit is split.</b><span>Of every 100 parts of positive realized Agent profit, 65 compound in Strategy Capital, 15 go to the Buyback Reserve, 10 go to Holder Rewards and 10 to the Protocol Reserve. A realized loss produces no profit, so nothing is split.</span></li></ol>
+        </section>
+        <section class="flow-panel" id="flow-panel-buyback" role="tabpanel" aria-labelledby="flow-tab-buyback" tabindex="0" data-flow-panel="buyback">
+          <header class="flow-panel-heading">
+            <p class="flow-index">03 / GUARDED BUYBACK</p>
+            <h2>Reserve with purpose.<em>Return through burn.</em></h2>
+            <p>A bounded route from protected reserve to COMPD, subject to execution checks and protocol state.</p>
+          </header>
+          <div class="flow-canvas" data-flow-stage="buyback"></div>
+          <ol class="flow-steps"><li><b>Every buyback passes the guards.</b><span>The Buyback Reserve is used only after the reserve trigger, per-execution limit, hard cap, cooldown, slippage and quote checks all pass.</span></li><li><b>Bounded execution, then burn.</b><span>The Buyback Admin reviews and submits existing transaction hashes. Owner-funded purchases remain separate from Kernel reserves. Dead-address transfers and verified supply burns are tracked separately; automatic buyback execution is disabled.</span></li></ol>
+        </section>
+      </div>
+      <p class="flow-detail" id="flow-detail" aria-live="polite"><small>SELECT A NODE</small><span>Hover or select any point in the diagram to trace its path.</span></p>
+    </section>
+
+    <section class="flow-rules" aria-labelledby="flow-rules-title">
+      <p class="flow-index">APPROVED V1 BUYBACK POLICY</p>
+      <h2 id="flow-rules-title">The guards, in numbers.</h2>
+      <dl class="flow-policy" aria-label="Approved V1 buyback policy context">
+        <div><dt>RESERVE TRIGGER</dt><dd>0.25 BNB</dd></div>
+        <div><dt>PER EXECUTION</dt><dd>20% of current reserve</dd></div>
+        <div><dt>PERMANENT HARD CAP</dt><dd>0.50 BNB</dd></div>
+        <div><dt>COOLDOWN</dt><dd>6 hours</dd></div>
+        <div><dt>24-HOUR SPENDING CAP</dt><dd>40% of period-start reserve</dd></div>
+        <div><dt>MAX SLIPPAGE</dt><dd>3%</dd></div>
+        <div><dt>MAX QUOTE DEVIATION</dt><dd>3%</dd></div>
+        <div><dt>EXECUTION / STATE</dt><dd>AUTOMATION_EXECUTOR only · ACTIVE only</dd></div>
+      </dl>
+      <p class="flow-footnote">The 65 / 15 / 10 / 10 split applies only to positive realized strategy profit after principal is returned. It excludes principal, protocol revenue, unrealized PnL, losses, recovered assets and arbitrary transfers. Allocation values describe approved policy, not live balances.</p>
+    </section>
+
+    <section class="flow-closing" aria-labelledby="flow-closing-title">
+      <p class="flow-index">A SYSTEM WITH DISTINCT BOUNDARIES</p>
+      <h2 id="flow-closing-title">Built to move<br><em>with rules.</em></h2>
+      <p>COMPD separates capital by source and purpose before execution occurs. Strategy capital remains bounded by risk controls. Buyback capital remains protected by execution guards. Protocol capital remains separately accounted.</p>
+      <nav class="flow-closing-links" aria-label="Explore COMPD">
+        <a href="treasury.html">Explore Treasury <span aria-hidden="true">↗</span></a>
+        <a href="agent.html">Explore Agent <span aria-hidden="true">↗</span></a>
+        <a href="protocol.html">Read Protocol <span aria-hidden="true">↗</span></a>
+      </nav>
+    </section>
+  <section class="surface split-panel protocol-observation" aria-label="Read-only COMPD protocol observations"><p class="eyebrow">COMPD / READ-ONLY PROTOCOL DATA</p><p role="status" aria-live="polite" data-compd-state>Pending — data source not connected</p><p class="protocol-note">Protocol observations are separate from paper simulation. Live xStocks trading is Not Activated; Buyback routes and native burn remain unverified; Holder Rewards remain inactive pending verified launch, indexed transfers, and reviewed deployment.</p><div class="metrics-grid"><div class="metric"><small>Flap fee sample</small><strong class="is-unavailable" data-compd="flow.feeSampleWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Buyback execution</small><strong class="is-unavailable" data-compd="flow.buybackStatus" data-format="state">Not Available</strong></div><div class="metric"><small>Holder payout</small><strong class="is-unavailable" data-compd="flow.holders.status" data-format="state">Not Available</strong></div><div class="metric"><small>Launch transaction</small><strong class="is-unavailable" data-compd="protocol.launchTransactionHash" data-format="">Not Available</strong></div><div class="metric"><small>Bonding phase (backend observation)</small><strong class="is-unavailable" data-compd="flow.bonding.phase" data-format="state">Not Available</strong></div><div class="metric"><small>First15-minute checkpoint</small><strong class="is-unavailable" data-compd="flow.holders.checkpoint.outcome" data-format="state">Not Available</strong></div><div class="metric"><small>Checkpoint countdown</small><strong class="is-unavailable" data-compd="flow.holders.countdownSeconds" data-format="seconds">Not Available</strong></div></div><h3>Holder Rewards</h3><p>Current rankings are a confirmed-event preview. Payment totals cover all indexed Kernel payouts. Holder Rewards are funded only by 10% of positive realized Agent profit.</p><div class="metrics-grid"><div class="metric"><small>Epoch start</small><strong data-compd="flow.holders.epochStart" data-format="time">Not Available</strong></div><div class="metric"><small>Epoch end</small><strong data-compd="flow.holders.epochEnd" data-format="time">Not Available</strong></div><div class="metric"><small>Epoch kind</small><strong data-compd="flow.holders.epochKind" data-format="state">Not Available</strong></div><div class="metric"><small>Verified window allocation</small><strong data-compd="flow.holders.allocatedWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Confirmed rewards paid</small><strong data-compd="flow.holders.paidWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Outstanding liabilities</small><strong data-compd="flow.holders.pendingLiabilitiesWei" data-format="bnb">Not Available</strong></div></div><h3>Top 30 eligible holders — provisional</h3><div data-compd-holders>Not Available</div><h3>Confirmed push payout receipts</h3><div data-compd-payouts>Not Available</div><h3>Confirmed burn receipts</h3><div data-compd-burns>Not Available</div></section>
+<section class="surface split-panel protocol-observation" aria-label="Manual Buyback and Burn"><p class="eyebrow">COMPD / VERIFIED MANUAL BUYBACK &amp; BURN</p><p data-manual-status role="status">Loading verified records…</p><p class="protocol-note">Only verified submitted transactions are counted. This is not complete chain history. Kernel reserves remain in Kernel custody; owner-funded buys never reduce them.</p><div class="metrics-grid">
+<div class="metric"><small>Available Buyback Reserve</small><strong data-manual="treasury.availableReserveWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Suggested treasury buyback now</small><strong data-manual="treasury.suggestedManualBuybackWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Maximum treasury execution now</small><strong data-manual="treasury.maximumPermittedBuybackWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Policy amount before blocked execution gates</small><strong data-manual="treasury.policyMaximumWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Verified owner-funded BNB spent</small><strong data-manual="totals.bnbSpentWei" data-format="bnb">Not Available</strong></div><div class="metric"><small>Verified COMPD purchased (base units)</small><strong data-manual="totals.tokensPurchasedBaseUnits" data-format="">Not Available</strong></div><div class="metric"><small>COMPD sent to dead address (base units)</small><strong data-manual="totals.deadTokensBaseUnits" data-format="">Not Available</strong></div><div class="metric"><small>COMPD supply reduction (base units)</small><strong data-manual="totals.nativeBurnedBaseUnits" data-format="">Not Available</strong></div></div><p data-manual-treasury>Not Available</p><h3>Verified transaction history</h3><div data-manual-history>No verified records available.</div><a href="admin.html">Admin sign-in →</a></section>
+</main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-identity"><a class="footer-brand" href="index.html"><img src="compd-stack-mark.png" alt="">COMPD</a><p>The Compounder</p></div>
+      <nav class="footer-links" aria-label="Footer navigation"><a href="treasury.html">Treasury</a><a href="agent.html">Agent</a><a href="flow.html" aria-current="page">Flow</a><a href="protocol.html">Protocol</a><a href="docs.html">Documentation</a></nav>
+    </div>
+    <div class="footer-bottom"><span>© 2026 COMPD. All rights reserved.</span><span>Capital flow architecture · no live execution</span></div>
+  </footer>
+</body>
+</html>

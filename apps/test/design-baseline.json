@@ -1,0 +1,20 @@
+{
+  "src/compd-atmosphere.css": "ecc76d6689dfc22676da5fe6917ea130aa31085243e46af917c8bd5af23abf59",
+  "src/compd-favicon-32.png": "9f659c77a72cff9427aa774ca2b1cda7f366a1c526fecd8790cd3a9e3e48dae8",
+  "src/compd-page.js": "1ca4e61898aa9073c3f7524254aead2d11c631ecaaca9e566c97fb2b2d7c247c",
+  "src/compd-scene.js": "94d7037910d12541f6206858d8c714f470fb25241927dd2cb5dd1ea95d722565",
+  "src/compd-shell.js": "a5de03430d4134d1ee46c77c15962174681df61ccfd9b8d3f30c64d88ebbba23",
+  "src/compd-stack-mark.png": "dddbdd6dc9974a4df7b5d3047e7d699dede2133c72900760b4e68ed94b9634a4",
+  "src/compd-system.css": "13dcfe6a5534f8a88ada9075c9cc0e1e6fab53fb32369745827f7830f93e6903",
+  "src/compd-touch-icon-180.png": "6a2dffdb9a7f0c73cd598d711bbd4d73a6bec35baf7be2efdf549a7e78054e0c",
+  "src/flow-page.css": "f72f4471d5c4316cd40ce9657b91598487906ca474ba74bb35c59c53577bb8de",
+  "src/landing.css": "bb7e73a80ef0be9a003aac4ad5c62ecda12a3d62539a20a804bf9d1d05f1f59d",
+  "src/landing.js": "298acd54e62db71953371c0173a6f71c2e7243e4605d5b00026aeb0f6af5ab23",
+  "src/paper-workspace.css": "5195579eaac6491029d750cd87b07f5480d2493b429e8319e320a74aa913027d",
+  "src/vendor/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+  "src/vendor/README.md": "1e427e4cff8d868a445dd54bb0922e1bbd6ece122cdca31038f6082fb21fb67d",
+  "src/vendor/ScrollTrigger.min.js": "b0b14d67b55b0c43c756ac0b106cfcb09d0879945f6ead64451065b0672916a2",
+  "src/vendor/three-subset.entry.mjs": "80ece5f5b214ab5cf3698b1a59532d0373f7ee2c18f29529510dab054056e409",
+  "src/vendor/three-subset.min.js": "fce8ff99cb98b39ca0012a15c900c60c286ad91b9183c3ba3bee146d9a8dc493",
+  "src/vendor/three.LICENSE": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+}

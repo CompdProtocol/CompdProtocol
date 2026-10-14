@@ -1,0 +1,13 @@
+/* Additive data wrapping only; original design/layout/animation styles are preserved. */
+.protocol-observation { margin-top: 24px; }
+.protocol-observation .metric strong, .protocol-observation .flow-row, [data-compd-contracts], [data-compd-jobs], [data-compd-burns] { overflow-wrap: anywhere; min-width: 0; }
+.protocol-observation .metric strong { font-size: clamp(13px, 2vw, 20px); }
+.protocol-observation .flow-row { flex-wrap: wrap; gap: 8px; }
+.protocol-observation [role="status"] { line-height: 1.7; }
+@media (max-width: 600px) { .protocol-observation .metrics-grid { grid-template-columns: 1fr; } }
+
+[data-manual-private] form {display:flex;flex-wrap:wrap;gap:12px;margin:20px 0;}
+[data-manual-private] label {display:flex;flex-direction:column;gap:8px;max-width:100%;}
+[data-manual-private] input,[data-manual-private] select {background:#10100f;color:inherit;border:1px solid #444;padding:12px;max-width:100%;}
+[data-manual-private] input {width:min(480px,75vw);}
+[data-manual-history],[data-manual-admin-history] {overflow-wrap:anywhere;}
