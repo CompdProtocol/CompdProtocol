@@ -1,24 +1,53 @@
 # Security Policy
 
-COMPD is experimental software and has not been represented as independently audited or production-ready.
+## Overview
 
-## Do not use with real funds
+COMPD is a modular treasury and strategy execution framework built for BNB Chain. Its architecture separates treasury accounting, strategy execution, settlement, buyback operations, and holder reward distribution into distinct components with defined responsibilities.
 
-Do not deploy these contracts or enable agent execution with real assets based only on this source. Reviewers should assume the code may contain vulnerabilities, incomplete integrations, stale assumptions, and historical prototypes.
+Security is considered across contract permissions, asset custody, execution boundaries, accounting integrity, and operational controls.
 
-## Reporting a vulnerability
+## Security Architecture
 
-Please do not publish exploitable details in a public issue. Contact the project maintainers privately through a verified contact channel listed on the project's GitHub profile. Do not include secrets, private keys, seed phrases, or personal data in a report.
+COMPD is designed around several core principles:
 
-## Public repository rules
+- **Controlled Execution:** Strategy operations are subject to defined authorization and execution boundaries.
+- **Treasury Separation:** Treasury accounting and reserve management are separated from strategy execution responsibilities.
+- **Settlement Integrity:** Strategy outcomes are accounted for through dedicated settlement mechanisms.
+- **Modular Responsibilities:** Kernel, StrategyExecutor, Buyback, and Holder Reward components maintain distinct protocol responsibilities.
+- **Operational Safeguards:** Deployment configuration, privileged access, and external integrations require independent verification before production use.
 
-Never commit:
-- Private keys, seed phrases, keystores, passwords, or signing material.
-- `.env` files, production RPC URLs containing credentials, API tokens, or auth cookies.
-- Private server deployment files, production runtime state, logs, database files, backups, or customer data.
+These architectural principles describe the system's intended security boundaries and do not constitute a guarantee of security.
 
-If a credential was committed at any point, deleting the file is not enough: revoke/rotate the credential and consider the full Git history exposed.
+## Responsible Disclosure
 
-## Scope and limitations
+We encourage responsible reporting of potential vulnerabilities affecting COMPD contracts, integrations, or supporting infrastructure.
 
-Public source, CI checks, and unit tests are not a security audit. A green build is not evidence that a contract or agent is safe to operate.
+If you identify a security issue:
+
+1. Avoid publicly disclosing exploitable technical details before maintainers have had an opportunity to investigate.
+2. Contact the maintainers through a verified private communication channel listed on the official GitHub profile.
+3. Provide a clear description of the issue, affected components, reproduction steps, and potential impact.
+4. Never include private keys, credentials, seed phrases, or unrelated personal information.
+
+Security reports will be reviewed according to their potential impact and reproducibility. No fixed response or remediation timeline is currently guaranteed.
+
+## Repository Security
+
+Contributors must not commit sensitive information, including:
+
+- Private keys, seed phrases, keystores, or signing credentials.
+- Environment files containing secrets, API keys, authentication tokens, or private RPC credentials.
+- Production server configurations, internal deployment credentials, or privileged infrastructure access.
+- Private operational data, database backups, or confidential user information.
+
+Any exposed credential should be treated as compromised and promptly revoked or rotated. Removing a secret from the latest source revision does not eliminate its exposure in Git history.
+
+## Security Status & Limitations
+
+COMPD remains under development. The availability of source code, automated tests, and architectural safeguards does not establish that the protocol has completed independent security auditing or production qualification.
+
+Contract deployments, integrations, and automated strategy execution must undergo appropriate security review and operational validation before handling real assets.
+
+**Agent trading is not currently live.**
+
+Security documentation will evolve alongside the protocol's implementation and verification process.
