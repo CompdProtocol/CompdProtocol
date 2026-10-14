@@ -1,5 +1,17 @@
 # COMPD — The Compounder
+[![Version](https://img.shields.io/badge/COMPD-v0.1.0-C9A44C?style=flat-square&labelColor=141414)](https://github.com/CompdProtocol)
+[![BNB Chain](https://img.shields.io/badge/Network-BNB%20Chain-F0B90B?style=flat-square&labelColor=141414)](https://www.bnbchain.org/)
+[![Agent](https://img.shields.io/badge/Agent-AMZNx-C9A44C?style=flat-square&labelColor=141414)](https://github.com/CompdProtocol)
+[![PancakeSwap](https://img.shields.io/badge/DEX-PancakeSwap%20V3-1FC7D4?style=flat-square&labelColor=141414)](https://pancakeswap.finance/)
 
+**Supported & Planned Assets**
+
+[![AMZNx](https://img.shields.io/badge/AMZNx-Initial%20Asset-FF9900?style=flat-square&labelColor=141414)](https://github.com/CompdProtocol)
+
+![NVDAx](https://img.shields.io/badge/NVDAx-Planned-76B900?style=flat-square&labelColor=141414)
+![TSLAx](https://img.shields.io/badge/TSLAx-Planned-E82127?style=flat-square&labelColor=141414)
+![AAPLx](https://img.shields.io/badge/AAPLx-Planned-A2AAAD?style=flat-square&labelColor=141414)
+![SPYx](https://img.shields.io/badge/SPYx-Planned-1676D2?style=flat-square&labelColor=141414)
 <img width="2243" height="701" alt="image" src="https://github.com/user-attachments/assets/17408c29-babe-461d-bff4-a45870577d0b" />
 
 **Built to Compound.**
