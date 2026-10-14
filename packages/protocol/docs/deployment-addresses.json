@@ -1,0 +1,111 @@
+{
+  "scope": "PRESERVED_LOCAL_EVIDENCE_NOT_FRESH_CHAIN_VERIFICATION",
+  "verifiedProductionEvidence": {
+    "chainId": 56,
+    "flapVaultPortal": "0x90497450f2a706f1951b5bdda52b4e5d16f34c06",
+    "flapPortal": "0xe2ce6ab80874fa9fa2aae65d277dd6b8e65c9de0",
+    "reservedCompdToken": "0x7b7af51136574c91a12988989c0a08e98ae97777",
+    "reservationTransactionHash": "0xa2cbaf22bad6b5b08a820f09a1c2e3c6c96fba6f4f57e8c5e86ebe068206dd43",
+    "reservationBlockNumber": 125352810,
+    "qualification": "Flap deployed addresses plus COMPD salt reservation only; no COMPD token, custom factory, fee receiver, Kernel or Holder graph deployment proven"
+  },
+  "unresolvedProductionGraph": [
+    {
+      "label": "Candidate",
+      "contract": "CompdHolderCandidateModuleV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "State",
+      "contract": "CompdCanonicalHolderStateV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Distributor",
+      "contract": "CompdHolderDistributorV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Liability",
+      "contract": "CompdHolderLiabilityV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "RecoveryEvidence",
+      "contract": "CompdRecoveryEvidenceV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Recovery",
+      "contract": "CompdRecoveryModuleV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Holder",
+      "contract": "CompdHolderModuleV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Settlement",
+      "contract": "CompdSettlementModuleV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "BuybackExecutor",
+      "contract": "CompdDeferredManualBuybackExecutorV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "BuybackPolicy",
+      "contract": "CompdBuybackPolicyModuleV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Emergency",
+      "contract": "CompdEmergencyModuleV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Registry",
+      "contract": "CompdEmergencyScopeRegistryV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "Kernel",
+      "contract": "CompdVaultKernelV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "StrategyExecutor",
+      "contract": "CompdStrategyExecutorV2R2",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "NativeFeeReceiver",
+      "contract": "CompdNativeFeeReceiverV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    },
+    {
+      "label": "NativeVaultFactory",
+      "contract": "CompdNativeVaultFactoryV3",
+      "address": "UNRESOLVED",
+      "runtimeCodeHash": "UNRESOLVED"
+    }
+  ],
+  "productionExecutionEnabled": false
+}
