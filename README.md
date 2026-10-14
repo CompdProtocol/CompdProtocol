@@ -1,5 +1,7 @@
 # COMPD — The Compounder
 
+<img width="2243" height="701" alt="image" src="https://github.com/user-attachments/assets/530cade9-6083-49ac-ae29-26eceb0ddf88" />
+
 **Built to Compound.**
 
 COMPD is a modular treasury and strategy execution framework developed for BNB Chain. It brings protocol accounting, controlled execution, strategy evaluation, buyback mechanisms, and holder reward infrastructure into a connected development architecture.
