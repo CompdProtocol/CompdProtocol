@@ -1,0 +1,13 @@
+{
+  "name": "compd-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "COMPD public monorepo: interface, agent research code, and Solidity protocol",
+  "scripts": {
+    "interface:check": "npm --prefix apps/interface run check",
+    "interface:test": "npm --prefix apps/interface test",
+    "interface:build": "npm --prefix apps/interface run build",
+    "protocol:build": "npm --prefix packages/protocol run build",
+    "protocol:test": "npm --prefix packages/protocol test"
+  }
+}
