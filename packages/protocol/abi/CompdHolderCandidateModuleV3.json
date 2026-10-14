@@ -1,0 +1,1782 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "kernel_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "state_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "distributor_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "finalizer_",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "eligibilityToken_",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "ChangedCode",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidCandidate",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidProof",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Replay",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "Unauthorized",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "distributionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "oldVersion",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "newVersion",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "reasonHash",
+        "type": "bytes32"
+      }
+    ],
+    "name": "CandidateCorrected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "distributionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "recipients",
+        "type": "uint16"
+      }
+    ],
+    "name": "CandidateFinalized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "distributionId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "executableAfter",
+        "type": "uint64"
+      }
+    ],
+    "name": "CandidateSubmitted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "EmptyCandidateFinalized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "start",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "end",
+        "type": "uint64"
+      }
+    ],
+    "name": "ZeroWindowFinalized",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DATASET_TYPEHASH",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "DOMAIN_TYPEHASH",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "EMPTY_ENTRIES",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "EMPTY_EVIDENCE_TYPEHASH",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "EVIDENCE_TYPEHASH",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "HOLDER_WINDOW_SECONDS",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "LEAF_TYPEHASH",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_RECIPIENTS",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "NODE_TYPEHASH",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PROTOCOL_ID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "REVIEW_SECONDS",
+    "outputs": [
+      {
+        "internalType": "uint64",
+        "name": "",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      }
+    ],
+    "name": "candidate",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "distributionId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "windowId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowStart",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowEnd",
+            "type": "uint64"
+          },
+          {
+            "internalType": "address",
+            "name": "rewardAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "windowPool",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "payableTotal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "recipientCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "root",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "datasetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "algorithmVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "version",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "acceptedAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "executableAfter",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bool",
+            "name": "empty",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "finalized",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint16",
+            "name": "materializedCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint256",
+            "name": "materializedTotal",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.Candidate",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      }
+    ],
+    "name": "candidateEvidence",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "manifestHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entriesHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "snapshotBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "snapshotBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sourceStartBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "closeBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "finalityBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "finalityBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "exclusionSetVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "exclusionSetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "replayCodeHash",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.CandidateEvidence",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "",
+        "type": "uint32"
+      }
+    ],
+    "name": "candidateEvidenceCommitment",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "activationBlock",
+        "type": "uint64"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "activationHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint64",
+        "name": "activationTime",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint64",
+        "name": "firstWindow",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "vault",
+        "type": "address"
+      }
+    ],
+    "name": "computeActivationContextHash",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[15]",
+        "name": "addresses_",
+        "type": "address[15]"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      }
+    ],
+    "name": "computeExclusionSetHash",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "activationBlock",
+        "type": "uint64"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "activationHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint64",
+        "name": "launchTime",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint64",
+        "name": "start",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "vault",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "distributor_",
+        "type": "address"
+      }
+    ],
+    "name": "computeLaunchWindowIdentity",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "wid",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "did",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint64",
+        "name": "end",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "activationBlock",
+        "type": "uint64"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "activationHash",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint64",
+        "name": "activationTime",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint64",
+        "name": "windowStart",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "chainId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "vault",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "distributor_",
+        "type": "address"
+      }
+    ],
+    "name": "computeWindowIdentity",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "wid",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "did",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint64",
+        "name": "end",
+        "type": "uint64"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "distributionId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "windowId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowStart",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowEnd",
+            "type": "uint64"
+          },
+          {
+            "internalType": "address",
+            "name": "rewardAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "windowPool",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "payableTotal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "recipientCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "root",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "datasetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "algorithmVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "version",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "acceptedAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "executableAfter",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bool",
+            "name": "empty",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "finalized",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint16",
+            "name": "materializedCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint256",
+            "name": "materializedTotal",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.Candidate",
+        "name": "n",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "manifestHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entriesHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "snapshotBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "snapshotBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sourceStartBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "closeBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "finalityBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "finalityBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "exclusionSetVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "exclusionSetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "replayCodeHash",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.CandidateEvidence",
+        "name": "e",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "reason",
+        "type": "bytes32"
+      }
+    ],
+    "name": "correctCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "currentVersion",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "distributor",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "domainSeparator",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "emptyEvidence",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "manifestHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entriesHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "snapshotBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "snapshotBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sourceStartBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "closeBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "finalityBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "finalityBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "exclusionSetVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "exclusionSetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "replayCodeHash",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.EmptyEvidence",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "emptyRecord",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint64",
+            "name": "windowStart",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "acceptedAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "finalizedAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint32",
+            "name": "version",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "commitment",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bool",
+            "name": "finalized",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateModuleV3.EmptyRecord",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "emptyRecoveryId",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      }
+    ],
+    "name": "finalizeCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "windowId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "finalizeEmptyCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "start",
+        "type": "uint64"
+      }
+    ],
+    "name": "finalizeZeroWindow",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      }
+    ],
+    "name": "finalizedCandidate",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "distributionId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "windowId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowStart",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowEnd",
+            "type": "uint64"
+          },
+          {
+            "internalType": "address",
+            "name": "rewardAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "windowPool",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "payableTotal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "recipientCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "root",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "datasetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "algorithmVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "version",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "acceptedAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "executableAfter",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bool",
+            "name": "empty",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "finalized",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint16",
+            "name": "materializedCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint256",
+            "name": "materializedTotal",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.Candidate",
+        "name": "c",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "commitment",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "finalizer",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "kernel",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "id",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      },
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "domainSeparator",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "distributionId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "commitmentVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "windowId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowStart",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowEnd",
+            "type": "uint64"
+          },
+          {
+            "internalType": "address",
+            "name": "rewardAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "windowPool",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "finalizedTotalPayable",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "recipientIndex",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address",
+            "name": "recipient",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "datasetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "algorithmVersion",
+            "type": "uint32"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.Leaf",
+        "name": "l",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes32[]",
+        "name": "proof",
+        "type": "bytes32[]"
+      }
+    ],
+    "name": "materializeLeaf",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "leafId",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "moduleVersion",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "",
+        "type": "uint32"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "openReviewCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pendingCandidateReserve",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reconciliationDigest",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "state",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "distributionId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "windowId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowStart",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "windowEnd",
+            "type": "uint64"
+          },
+          {
+            "internalType": "address",
+            "name": "rewardAsset",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "windowPool",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "payableTotal",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint16",
+            "name": "recipientCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "root",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "datasetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "algorithmVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "version",
+            "type": "uint32"
+          },
+          {
+            "internalType": "uint64",
+            "name": "acceptedAt",
+            "type": "uint64"
+          },
+          {
+            "internalType": "uint64",
+            "name": "executableAfter",
+            "type": "uint64"
+          },
+          {
+            "internalType": "bool",
+            "name": "empty",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "finalized",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint16",
+            "name": "materializedCount",
+            "type": "uint16"
+          },
+          {
+            "internalType": "uint256",
+            "name": "materializedTotal",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.Candidate",
+        "name": "c",
+        "type": "tuple"
+      },
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "manifestHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entriesHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "snapshotBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "snapshotBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sourceStartBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "closeBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "finalityBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "finalityBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "exclusionSetVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "exclusionSetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "replayCodeHash",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.CandidateEvidence",
+        "name": "e",
+        "type": "tuple"
+      }
+    ],
+    "name": "submitCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint64",
+        "name": "start",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint32",
+        "name": "version",
+        "type": "uint32"
+      },
+      {
+        "components": [
+          {
+            "internalType": "bytes32",
+            "name": "manifestHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "entriesHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "snapshotBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "snapshotBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sourceStartBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "closeBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "closeBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint256",
+            "name": "finalityBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "finalityBlockHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "uint32",
+            "name": "exclusionSetVersion",
+            "type": "uint32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "exclusionSetHash",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "replayCodeHash",
+            "type": "bytes32"
+          }
+        ],
+        "internalType": "struct CompdHolderCandidateTypesV3.EmptyEvidence",
+        "name": "e",
+        "type": "tuple"
+      }
+    ],
+    "name": "submitEmptyCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "zeroWindowFinalized",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
