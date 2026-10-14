@@ -1,5 +1,8 @@
 # COMPD — The Compounder
 
+<img width="2243" height="701" alt="image" src="https://github.com/user-attachments/assets/a36e7947-e1bb-4905-921b-7d86f307ef65" />
+
+
 **Built to Compound.**
 
 ## Overview
