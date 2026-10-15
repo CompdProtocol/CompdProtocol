@@ -1,8 +1,12 @@
 # COMPD Agent
 
-Private xStocks observation and planning implementation for **COMPD — The Compounder**.
+The autonomous xStocks strategy framework for **COMPD — The Compounder**, built around PancakeSwap on BNB Chain.
 
-**This repository must remain private permanently. Agent trading is not live.** The xStocks lifecycle is **OBSERVE_ONLY**, rejects an executing scheduler and keeps production routes disabled. Fixture decisions do not authorize trades.
+**AMZNx is the first supported strategy target**, with a dedicated trading architecture covering market observation, strategy evaluation, risk management, and execution planning.
+
+COMPD is designed to expand its agent coverage to additional tokenized equities, including **NVDAx, TSLAx, AAPLx, and SPYx**, as their respective integrations and risk requirements are qualified.
+
+The public repository provides a sanitized implementation snapshot. Production credentials and private operational infrastructure are excluded.
 
 ## Strategy scope
 
