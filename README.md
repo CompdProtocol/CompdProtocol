@@ -2,7 +2,7 @@
 
 **Built to Compound.**
 
-![COMPD — The Compounder](<img width="2172" height="724" alt="b7f87e4e-a31a-498f-aa42-45febf1756c0" src="https://github.com/user-attachments/assets/2d931a88-f453-4f65-93ae-c27e6de9f1df" />
+<img width="2172" height="724" alt="b7f87e4e-a31a-498f-aa42-45febf1756c0" src="https://github.com/user-attachments/assets/2d931a88-f453-4f65-93ae-c27e6de9f1df" />
 
 
 Treasury discipline. Defined capital flows. A framework for compounding realized results.
