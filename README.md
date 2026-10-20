@@ -2,11 +2,12 @@
 
 **Built to Compound.**
 
-![COMPD — The Compounder](docs/assets/compd-banner.png)
+![COMPD — The Compounder](<img width="2172" height="724" alt="b7f87e4e-a31a-498f-aa42-45febf1756c0" src="https://github.com/user-attachments/assets/2d931a88-f453-4f65-93ae-c27e6de9f1df" />
+
 
 Treasury discipline. Defined capital flows. A framework for compounding realized results.
 
-![Implementation: BNB Chain](https://img.shields.io/badge/Implementation-BNB_Chain-C9A44C?style=flat-square&labelColor=111111)
+![Implementation:Solana](https://img.shields.io/badge/Implementation-Solana-C9A44C?style=flat-square&labelColor=111111)
 ![Direction: Solana research](https://img.shields.io/badge/Direction-Solana_research-9945FF?style=flat-square&labelColor=111111)
 ![Pump.fun: proposed](https://img.shields.io/badge/Pump.fun-Proposed-7AD9B2?style=flat-square&labelColor=111111)
 
@@ -214,7 +215,7 @@ Private repository links require authorized access. The existing public snapshot
 - [Release v0.1.0](https://github.com/CompdProtocol/CompdProtocol/releases/tag/v0.1.0)
 - [Contribution guidance](CONTRIBUTING.md)
 
-[Snapshot validation and packaging limits](docs/PUBLIC-SNAPSHOT-NOTES.md) complement these references. No completed independent audit, production readiness or trading performance is claimed here.
+Detailed qualification limits and validation records belong to these references. No completed independent audit, production readiness or trading performance is claimed here.
 
 COMPD first-party licensing awaits owner approval. Third-party components retain their applicable terms; public source availability does not itself grant unrestricted reuse.
 
