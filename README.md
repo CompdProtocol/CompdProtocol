@@ -214,7 +214,7 @@ Private repository links require authorized access. The existing public snapshot
 - [Release v0.1.0](https://github.com/CompdProtocol/CompdProtocol/releases/tag/v0.1.0)
 - [Contribution guidance](CONTRIBUTING.md)
 
-Detailed qualification limits and validation records belong to these references. No completed independent audit, production readiness or trading performance is claimed here.
+[Snapshot validation and packaging limits](docs/PUBLIC-SNAPSHOT-NOTES.md) complement these references. No completed independent audit, production readiness or trading performance is claimed here.
 
 COMPD first-party licensing awaits owner approval. Third-party components retain their applicable terms; public source availability does not itself grant unrestricted reuse.
 
