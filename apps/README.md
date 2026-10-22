@@ -1,3 +1,5 @@
+> **Historical source snapshot.** COMPD's current direction is Solana Mainnet, Meteora DBC and COMPD / SOL. This package retains its original implementation meaning. See the [current project overview](https://github.com/CompdProtocol/CompdProtocol) and [architecture and implementation scope](../docs/ARCHITECTURE.md) before using these instructions.
+
 # COMPD Interface
 
 **Built to Compound.**
@@ -75,11 +77,11 @@ Do not publish credential-bearing URLs, runtime state or backend implementation 
 - [Frontend handoff and development boundaries](HANDOFF.md)
 - [Vendored library provenance](src/vendor/README.md)
 - [Third-party licensing](THIRD_PARTY_NOTICES.md)
-- [Initial source baseline](SOURCE-BASELINE.json)
+- `SOURCE-BASELINE.json` (original export record; not bundled in this snapshot)
 
 ## Repository scope
 
-Backend implementations, credentials and runtime state belong outside this repository. [compd-protocol](https://github.com/CompdProtocol/compd-protocol) contains contracts. This repository remains private pending a separately reviewed public release. [SOURCE-BASELINE.json](SOURCE-BASELINE.json) records the initial export.
+Backend implementations, credentials and runtime state belong outside this repository. [compd-protocol](https://github.com/CompdProtocol/compd-protocol) contains contracts. This repository remains private pending a separately reviewed public release. `SOURCE-BASELINE.json` (original export record; not bundled in this snapshot) records the initial export.
 
 ## Licensing
 

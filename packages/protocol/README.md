@@ -1,3 +1,5 @@
+> **Historical source snapshot.** COMPD's current direction is Solana Mainnet, Meteora DBC and COMPD / SOL. This package retains its original implementation meaning. See the [current project overview](https://github.com/CompdProtocol/CompdProtocol) and [architecture and implementation scope](../../docs/ARCHITECTURE.md) before using these instructions.
+
 # COMPD — The Compounder
 
 **Built to Compound.**
@@ -18,7 +20,7 @@ These implementation capabilities are not claims of active production services.
 
 ## Architecture
 
-The documented graph centers on [CompdVaultKernelV3](contracts/production/v3/phase7cr2ch/CompdVaultKernelV3.sol).
+The documented graph centers on [CompdVaultKernelV3](contract/production/v3/phase7cr2ch/CompdVaultKernelV3.sol).
 
 | Component | Role in source |
 |---|---|
@@ -73,15 +75,15 @@ Do not treat local fixtures, source code, ABI exports or reserved addresses as p
 
 ## Documentation
 
-- [Architecture implementation](contracts/production/v3/phase7cr2ch/CompdVaultKernelV3.sol)
+- [Architecture implementation](contract/production/v3/phase7cr2ch/CompdVaultKernelV3.sol)
 - [Recorded addresses and unresolved deployment identities](docs/deployment-addresses.json)
 - [Read-only API contract](API-CONTRACT.md)
 - [Third-party provenance and licensing](THIRD_PARTY_NOTICES.md)
-- [Initial source baseline](SOURCE-BASELINE.json)
+- `SOURCE-BASELINE.json` (original export record; not bundled in this snapshot)
 - [Build configuration](foundry.toml)
 
 
-[compd-interface](https://github.com/CompdProtocol/compd-interface) contains the frontend. Agent implementation stays in a separate permanently private repository. This repository remains private pending a separately reviewed public release. [SOURCE-BASELINE.json](SOURCE-BASELINE.json) records the initial export; subsequent documentation commits do not change that historical baseline.
+[compd-interface](https://github.com/CompdProtocol/compd-interface) contains the frontend. Agent implementation stays in a separate permanently private repository. This repository remains private pending a separately reviewed public release. `SOURCE-BASELINE.json` (original export record; not bundled in this snapshot) records the initial export; subsequent documentation commits do not change that historical baseline.
 
 ## Licensing and release scope
 

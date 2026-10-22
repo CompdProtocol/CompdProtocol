@@ -1,3 +1,5 @@
+> **Historical source snapshot.** COMPD's current direction is Solana Mainnet, Meteora DBC and COMPD / SOL. This package retains its original implementation meaning. See the [current project overview](https://github.com/CompdProtocol/CompdProtocol) and [architecture and implementation scope](../../docs/ARCHITECTURE.md) before using these instructions.
+
 # COMPD Agent
 
 The autonomous xStocks strategy framework for **COMPD — The Compounder**, built around PancakeSwap on BNB Chain.
@@ -52,4 +54,4 @@ python -m unittest discover -s tools/agent-scheduler -p test_xstocks_agent.py
 
 Keep `tools/` and `offchain/` relative paths intact. Credentials, sensitive operational configuration and persistent state stay outside version control. Execution and credential setup are deliberately omitted.
 
-[SOURCE-BASELINE.json](SOURCE-BASELINE.json) and `MANIFEST.json` describe the initial export. The strict package verifier applies to that original release; later README changes intentionally differ from its historical inventory. Documentation updates do not qualify a new deployment package.
+`SOURCE-BASELINE.json` (original export record; not bundled in this snapshot) and `MANIFEST.json` describe the initial export. The strict package verifier applies to that original release; later README changes intentionally differ from its historical inventory. Documentation updates do not qualify a new deployment package.

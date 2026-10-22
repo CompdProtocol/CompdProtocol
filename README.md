@@ -4,21 +4,21 @@
 
 <img width="2172" height="724" alt="b7f87e4e-a31a-498f-aa42-45febf1756c0" src="https://github.com/user-attachments/assets/2d931a88-f453-4f65-93ae-c27e6de9f1df" />
 
-
 Treasury discipline. Defined capital flows. A framework for compounding realized results.
 
-![Implementation:Solana](https://img.shields.io/badge/Implementation-Solana-C9A44C?style=flat-square&labelColor=111111)
-![Direction: Solana research](https://img.shields.io/badge/Direction-Solana_research-9945FF?style=flat-square&labelColor=111111)
+![Network: Solana Mainnet](https://img.shields.io/badge/Network-Solana_Mainnet-C9A44C?style=flat-square&labelColor=111111)
+![Status: Integration design](https://img.shields.io/badge/Status-Integration_design-9945FF?style=flat-square&labelColor=111111)
+![Launch platform: Meteora DBC](https://img.shields.io/badge/Launch_platform-Meteora_DBC-7AD9B2?style=flat-square&labelColor=111111)
 
-[Vision](#01--the-compd-vision) · [Economics](#03--two-financial-flows-one-treasury) · [Agent](#04--autonomous-strategy-agent) · [Architecture](#08--architecture) · [Ecosystem](#09--solana-and-pumpfun-direction) · [Documentation](#10--repositories-and-documentation)
+[Vision](#01--the-compd-vision) · [Economics](#03--two-financial-flows-one-treasury) · [Agent](#04--autonomous-strategy-agent) · [Architecture](#08--architecture) · [Ecosystem](#09--solana-mainnet-and-meteora-dbc) · [Documentation](#10--repositories-and-documentation)
 
 ---
 
 ## 01 · The COMPD vision
 
-COMPD is a modular treasury accounting and execution protocol being developed for **Solana**. Its purpose is to give capital a defined lifecycle: receive, account, allocate, execute and reconcile.
+COMPD is a Solana-native protocol for modular treasury accounting and bounded execution on **Solana Mainnet**, with **Meteora Dynamic Bonding Curve (DBC) selected as its launch platform**. Its purpose is to give capital a defined lifecycle: receive, account, allocate, execute and reconcile.
 
-The core concept is disciplined reinvestment. Eligible protocol revenue supports strategy capital and dedicated reserves. Positive realized strategy results can replenish capital, support buybacks and fund holder rewards under explicit allocation rules.
+The selected trading pair is **COMPD / SOL**. The core concept is disciplined reinvestment. Eligible protocol revenue supports strategy capital and dedicated reserves. Positive realized strategy results can replenish capital, support buybacks and fund holder rewards under explicit allocation rules.
 
 Compounding is a design objective, not an assumed outcome. The system records losses as well as gains and separates the authority to move assets from the decision to propose a strategy.
 
@@ -30,7 +30,7 @@ Three principles shape the protocol:
 
 ## 02 · How the protocol works
 
-COMPD connects treasury accounting with a controlled strategy lifecycle.
+The Solana design connects treasury accounting with a controlled strategy lifecycle. The responsibilities below describe the target architecture, not deployed Solana programs.
 
 1. **Receive and classify.** Eligible native-asset inflows enter the Kernel and are recorded according to their funding category.
 2. **Allocate within limits.** Available strategy capital can support admitted strategy runs, subject to lifecycle, exposure and permission checks.
@@ -39,7 +39,7 @@ COMPD connects treasury accounting with a controlled strategy lifecycle.
 5. **Allocate realized results.** Positive profit replenishes strategy capital and dedicated reserves; losses reduce strategy capital and may halt further allocation.
 6. **Process reserves separately.** Buyback and holder-payment paths apply their own authorization, evidence and accounting controls.
 
-These mechanics describe the implementation and intended operating model. **Agent trading is not live.** Deployment evidence and operational qualification are documented separately from the protocol design.
+These mechanics describe the intended Solana operating model. **Deployment and Agent execution will follow implementation qualification.** Historical implementation details are retained in the linked technical records.
 
 ## 03 · Two Financial Flows. One Treasury.
 
@@ -49,7 +49,7 @@ A treasury bucket is an accounting designation. Crediting a reserve does not its
 
 ### Flow I — Trading fee allocation
 
-The recurring revenue model allocates **eligible native revenue received by the protocol** as follows:
+The recurring revenue model allocates **eligible revenue actually received by the COMPD treasury** as follows:
 
 | Destination | Allocation | Purpose |
 |---|---:|---|
@@ -59,7 +59,7 @@ The recurring revenue model allocates **eligible native revenue received by the 
 
 For every 100 units of eligible receipts, 35 are accounted to strategy capital, 15 to the buyback reserve and 50 to the protocol reserve.
 
-This split applies to receipts recognized by the protocol, not to all market trading volume. It does not establish a fee entitlement from any external venue, including Pump.fun.
+This split applies to receipts recognized by the protocol, not to all market trading volume. It does not establish a fee entitlement from any external venue, including Meteora DBC.
 
 ### Flow II — Positive realized strategy profit
 
@@ -74,11 +74,11 @@ After a run is closed and physically returned assets are reconciled against its 
 
 For 100 units of positive realized profit, 65 remain in strategy capital, 15 support buybacks, 10 support holder rewards and 10 enter the protocol reserve.
 
-Returned principal is reconciled separately; it is not counted as profit. Unrealized gains do not trigger this split. Integer rounding in the implementation conserves the total allocation.
+Returned principal is reconciled separately; it is not counted as profit. Unrealized gains do not trigger this split. The Solana implementation must conserve totals under integer rounding, including any remainder.
 
 ### Funding is not revenue
 
-Bootstrap funding has a separate source rule: **10% strategy capital / 90% treasury principal**. Keeping this category distinct prevents the recurring revenue split from being applied to initial principal.
+Bootstrap funding retains a separate design rule: **10% strategy capital / 90% treasury principal**. Keeping this category distinct prevents the recurring revenue split from being applied to initial principal.
 
 Together, these rules give each funding category a defined destination without treating every inflow as distributable profit.
 
@@ -88,7 +88,7 @@ The Agent design combines recurring observation, risk assessment and execution p
 
 ### An eight-hour decision rhythm
 
-The scheduler organizes evaluation and lifecycle planning into **8-hour UTC cycles**. A cycle provides a decision window; it does not require a trade or promise a holding period.
+The Agent design retains evaluation and lifecycle planning on **8-hour UTC cycles**. A cycle provides a decision window; it does not require a trade or promise a holding period.
 
 The intended sequence is:
 
@@ -99,9 +99,9 @@ The intended sequence is:
 5. Recheck permission and lifecycle conditions before any authorized action.
 6. Record observations and reconcile subsequent lifecycle evidence.
 
-The existing Solana strategy framework focuses on **xStocks**, with **AMZNx as the initial qualification target** and PancakeSwap as the intended venue. wSOL is funding and swap infrastructure, not the strategy asset.
+Solana strategy assets, venues and price references require fresh qualification. Historical EVM xStocks and PancakeSwap routes do not establish Solana asset support or execution permission.
 
-Autonomy is the design direction, not the current operating status. The shipped framework remains observational unless separately qualified and authorized; this README does not enable execution.
+The Solana Agent will begin with observation and simulation. Autonomous execution requires separately implemented custody controls, qualified venues and explicit activation; this README does not enable it.
 
 ## 05 · Capital preservation and execution safeguards
 
@@ -118,7 +118,7 @@ Capital preservation begins with limiting what can be put at risk and recognizin
 | Physical-return settlement | Reconcile reported outcomes against actual returned native assets |
 | Evidence and replay controls | Bind actions and payments to their recorded identities and status |
 
-The inspected Kernel source limits each run to **10% of strategy capital**, aggregate allocation to **30%**, and active runs to **three**. Its designed-loss budget is not a guaranteed realized-loss ceiling; a recorded breach halts new allocation.
+The target risk model retains **10% of strategy capital per run**, **30% aggregate allocation**, and **three concurrent runs**. These limits must be implemented and tested on Solana; historical EVM controls are not evidence of Solana enforcement.
 
 These controls constrain execution. They do not eliminate market loss, liquidity risk or integration failure. See the [security policy](SECURITY.md) for the wider review boundaries.
 
@@ -136,7 +136,7 @@ The intended operating sequence is:
 
 A funded reserve does not imply immediate execution. A buyback and a burn are distinct outcomes: neither should be inferred from reserve growth alone.
 
-The source contains buyback policies and executor variants. Active routes, purchases and burns require their own evidence; this presentation does not claim an operating buyback service.
+The Solana buyback design requires a qualified purchase route, explicit spending controls and a verified token-burn path. Meteora DBC launch selection alone does not activate COMPD buybacks.
 
 ## 07 · Passive holder rewards
 
@@ -146,7 +146,7 @@ Here, *passive* describes the intended holder experience: rewards arise from pro
 
 The reward workflow separates:
 
-- **Reserve funding:** credit the holder reward share after positive-profit settlement.
+- **Reserve funding:** credit the holder-reward share after positive-profit settlement.
 - **Eligibility review:** bind a distribution window to candidate and canonical evidence.
 - **Finalization:** establish the distribution and its associated liabilities.
 - **Payment:** apply fixed-recipient evidence, reserve checks and payment status.
@@ -156,37 +156,39 @@ A reward allocation is not an immediate payout. Rewards are variable and conditi
 
 ## 08 · Architecture
 
-The existing implementation uses **Solidity contracts on Solana**, with a frontend and observation/planning tooling around the contract boundary.
+The diagram describes the **target Solana responsibility model**. Historical Solidity contracts remain EVM source and are not Solana programs.
 
 ```mermaid
 flowchart LR
-    S["Settlement module"] -->|Lifecycle calls| K["Kernel / Treasury"]
-    K -->|Run dispatch| E["StrategyExecutor"]
-    E -->|Admitted calls| A["Strategy adapters"]
-    B["Buyback policy"] -->|Bounded requests| K
-    K -->|Exact-input execution| X["Buyback executor"]
-    H["Holder module"] -->|Payment requests| K
-    H -->|Evidence checks| R["Holder state and distributor"]
-    K -->|Payment evidence checks| R
+    T["COMPD token / SOL pair"] --> D["Meteora DBC"]
+    D --> F["Verified fee collection"]
+    F --> K["COMPD Treasury"]
+    K --> S["35% Strategy Capital"]
+    K --> B["15% Buyback Reserve"]
+    K --> P["50% Protocol Reserve"]
+    S --> R["Principal recovery and settlement"]
+    R --> Q["Positive realized profit: 65 / 15 / 10 / 10"]
     classDef treasury fill:#15120b,stroke:#C9A44C,color:#F1E6CC;
     classDef execution fill:#171122,stroke:#A78BFA,color:#EEE8FF;
     classDef evidence fill:#0e1b17,stroke:#7AD9B2,color:#DFF7EC;
-    class K,B,X treasury;
-    class E,A execution;
-    class S,H,R evidence;
+    class K,S,B,P treasury;
+    class T,D execution;
+    class F,R,Q evidence;
 ```
 
-Arrows show selected contract call relationships, not token flows. The Agent proposes bounded actions; the interface presents observations. Neither replaces the Kernel's permissions or settlement checks.
+The flow describes intended responsibilities and allocation rules; verified fee collection will bind actual pool receipts to the treasury before allocation. The Agent proposes bounded actions; the interface presents observations. Neither replaces the Kernel's permissions or settlement checks.
 
-The architecture keeps custody and accounting central while giving execution, buyback policy and holder processing their own responsibilities. See the [architecture reference](docs/ARCHITECTURE.md) for repository boundaries and [Kernel source](packages/protocol/contract/production/v3/phase7cr2ch/CompdVaultKernelV3.sol) for the current accounting implementation.
+The architecture keeps custody and accounting central while giving execution, buyback policy and holder processing their own responsibilities. See the [architecture reference](docs/ARCHITECTURE.md) for repository boundaries and [Kernel source](packages/protocol/contract/production/v3/phase7cr2ch/CompdVaultKernelV3.sol) for the historical EVM accounting implementation, not deployed Solana programs.
 
-## 09 · Solana and Meteora direction
+## 09 · Solana Mainnet and Meteora DBC
 
-**Solana and Meteora are a proposed ecosystem direction for COMPD.** The objective is to explore how the protocol's treasury discipline and separate financial flows could fit that ecosystem.
+**Solana Mainnet is COMPD's selected target blockchain. Meteora DBC is the selected token launch platform.** The transition carries forward COMPD's treasury discipline and separate financial flows.
 
-The black-and-gold identity remains central, with restrained violet and mint accents. This visual direction does not change the chain or execution model of the existing contracts.
+The black-and-gold identity remains central, with restrained violet and mint accents. The launch transition does not change the chain or execution model of the preserved historical contracts.
 
-Future work would need to define native program architecture, custody and authority boundaries, eligible receipts, supported venues and distribution evidence for the target environment.
+Implementation work must establish native program architecture, custody and authority boundaries, verified DBC fee receipts, supported venues and distribution evidence.
+
+Platform selection is confirmed; operational integration is not. No Solana token mint, COMPD program deployment, live trading or active reward service is established by this document. No Meteora DBC partnership or guaranteed fee entitlement is implied.
 
 ## 10 · Repositories and documentation
 
@@ -195,7 +197,7 @@ Future work would need to define native program architecture, custody and author
 | Repository | Focus | Access |
 |---|---|---|
 | [CompdProtocol](https://github.com/CompdProtocol/CompdProtocol) | Public project presentation and existing source snapshot | Public |
-| [compd-protocol](https://github.com/CompdProtocol/compd-protocol) | Standalone contracts, Foundry tests, ABI exports and recorded evidence | Private |
+| [compd-protocol](https://github.com/CompdProtocol/compd-protocol) | Historical EVM contracts, Foundry tests, ABI exports and recorded evidence | Private |
 | [compd-interface](https://github.com/CompdProtocol/compd-interface) | Standalone frontend, observation panels and evidence-review interface | Private |
 
 Private repository links require authorized access. The existing public snapshot retains its own repository layout and documentation.
@@ -207,12 +209,12 @@ Private repository links require authorized access. The existing public snapshot
 - [Frontend setup and development](apps/README.md)
 - [Observation API contract](apps/API-CONTRACT.md)
 - [Security policy and responsible disclosure](SECURITY.md)
-- [Recorded deployment evidence](packages/protocol/docs/deployment-addresses.json)
+- [Historical EVM deployment evidence](packages/protocol/docs/deployment-addresses.json)
 - [Third-party provenance and licensing](packages/protocol/THIRD_PARTY_NOTICES.md)
 - [Release v0.1.0](https://github.com/CompdProtocol/CompdProtocol/releases/tag/v0.1.0)
 - [Contribution guidance](CONTRIBUTING.md)
 
-Detailed qualification limits and validation records belong to these references. No completed independent audit, production readiness or trading performance is claimed here.
+[Snapshot validation and packaging limits](docs/PUBLIC-SNAPSHOT-NOTES.md) complement these references. No completed independent audit, production readiness or trading performance is claimed here.
 
 COMPD first-party licensing awaits owner approval. Third-party components retain their applicable terms; public source availability does not itself grant unrestricted reuse.
 
