@@ -9,7 +9,6 @@ Treasury discipline. Defined capital flows. A framework for compounding realized
 
 ![Implementation:Solana](https://img.shields.io/badge/Implementation-Solana-C9A44C?style=flat-square&labelColor=111111)
 ![Direction: Solana research](https://img.shields.io/badge/Direction-Solana_research-9945FF?style=flat-square&labelColor=111111)
-![Pump.fun: proposed](https://img.shields.io/badge/Pump.fun-Proposed-7AD9B2?style=flat-square&labelColor=111111)
 
 [Vision](#01--the-compd-vision) · [Economics](#03--two-financial-flows-one-treasury) · [Agent](#04--autonomous-strategy-agent) · [Architecture](#08--architecture) · [Ecosystem](#09--solana-and-pumpfun-direction) · [Documentation](#10--repositories-and-documentation)
 
@@ -17,7 +16,7 @@ Treasury discipline. Defined capital flows. A framework for compounding realized
 
 ## 01 · The COMPD vision
 
-COMPD is a modular treasury accounting and execution protocol being developed for **BNB Chain**. Its purpose is to give capital a defined lifecycle: receive, account, allocate, execute and reconcile.
+COMPD is a modular treasury accounting and execution protocol being developed for **Solana**. Its purpose is to give capital a defined lifecycle: receive, account, allocate, execute and reconcile.
 
 The core concept is disciplined reinvestment. Eligible protocol revenue supports strategy capital and dedicated reserves. Positive realized strategy results can replenish capital, support buybacks and fund holder rewards under explicit allocation rules.
 
@@ -100,7 +99,7 @@ The intended sequence is:
 5. Recheck permission and lifecycle conditions before any authorized action.
 6. Record observations and reconcile subsequent lifecycle evidence.
 
-The existing BNB Chain strategy framework focuses on **xStocks**, with **AMZNx as the initial qualification target** and PancakeSwap as the intended venue. WBNB is funding and swap infrastructure, not the strategy asset.
+The existing Solana strategy framework focuses on **xStocks**, with **AMZNx as the initial qualification target** and PancakeSwap as the intended venue. wSOL is funding and swap infrastructure, not the strategy asset.
 
 Autonomy is the design direction, not the current operating status. The shipped framework remains observational unless separately qualified and authorized; this README does not enable execution.
 
@@ -147,7 +146,7 @@ Here, *passive* describes the intended holder experience: rewards arise from pro
 
 The reward workflow separates:
 
-- **Reserve funding:** credit the holder-reward share after positive-profit settlement.
+- **Reserve funding:** credit the holder reward share after positive-profit settlement.
 - **Eligibility review:** bind a distribution window to candidate and canonical evidence.
 - **Finalization:** establish the distribution and its associated liabilities.
 - **Payment:** apply fixed-recipient evidence, reserve checks and payment status.
@@ -157,7 +156,7 @@ A reward allocation is not an immediate payout. Rewards are variable and conditi
 
 ## 08 · Architecture
 
-The existing implementation uses **Solidity contracts on BNB Chain**, with a frontend and observation/planning tooling around the contract boundary.
+The existing implementation uses **Solidity contracts on Solana**, with a frontend and observation/planning tooling around the contract boundary.
 
 ```mermaid
 flowchart LR
@@ -181,15 +180,13 @@ Arrows show selected contract call relationships, not token flows. The Agent pro
 
 The architecture keeps custody and accounting central while giving execution, buyback policy and holder processing their own responsibilities. See the [architecture reference](docs/ARCHITECTURE.md) for repository boundaries and [Kernel source](packages/protocol/contract/production/v3/phase7cr2ch/CompdVaultKernelV3.sol) for the current accounting implementation.
 
-## 09 · Solana and Pump.fun direction
+## 09 · Solana and Meteora direction
 
-**Solana and Pump.fun are a proposed ecosystem direction for COMPD.** The objective is to explore how the protocol's treasury discipline and separate financial flows could fit that ecosystem.
+**Solana and Meteora are a proposed ecosystem direction for COMPD.** The objective is to explore how the protocol's treasury discipline and separate financial flows could fit that ecosystem.
 
 The black-and-gold identity remains central, with restrained violet and mint accents. This visual direction does not change the chain or execution model of the existing contracts.
 
 Future work would need to define native program architecture, custody and authority boundaries, eligible receipts, supported venues and distribution evidence for the target environment.
-
-No active Pump.fun integration or Solana deployment is established. The BNB Chain Solidity implementation is a technical foundation and design reference, not a deployed Solana program. No partnership or external fee entitlement is implied.
 
 ## 10 · Repositories and documentation
 
