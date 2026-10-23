@@ -2,7 +2,7 @@
 
 **Built to Compound.**
 
-<img width="2172" height="724" alt="b7f87e4e-a31a-498f-aa42-45febf1756c0" src="https://github.com/user-attachments/assets/2d931a88-f453-4f65-93ae-c27e6de9f1df" />
+<img width="2172" height="724" alt="COMPD — The Compounder" src="https://github.com/user-attachments/assets/2d931a88-f453-4f65-93ae-c27e6de9f1df" />
 
 Solana Mainnet · Meteora Dynamic Bonding Curve · COMPD/SOL
 
